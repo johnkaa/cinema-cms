@@ -1,11 +1,11 @@
 <template>
-  <div className="sales-page">
-    <h4 className="sales-page__title">{{ name }}</h4>
-    <div className="sales-page__inner">
-      <div className="sales-page__img">
+  <div class="sales-page">
+    <h4 class="sales-page__title">{{ name }}</h4>
+    <div class="sales-page__inner">
+      <div class="sales-page__img">
         <img :src="img" alt="">
       </div>
-      <div className="sales-page__info">{{ de sc }}</div>
+      <div class="sales-page__info">{{ desc }}</div>
     </div>
   </div>
 </template>
