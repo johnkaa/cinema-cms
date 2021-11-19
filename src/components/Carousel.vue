@@ -9,7 +9,7 @@
     }"
     >
       <swiper-slide class="swiper-slide" v-for="item in slider.items" :key="item.id">
-        <router-link :to="item.url"><img :src="item.img" alt=""></router-link>
+        <router-link :to="item.url"><img :src="item.img" alt="" width="1200px" height="600px"></router-link>
         <p class="swiper-slide__text" v-if="item.text">{{ item.text }}</p>
       </swiper-slide>
     </swiper>

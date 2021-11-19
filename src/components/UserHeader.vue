@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <div class="header__top">
-      <router-link class="logo" to="/"><img class="logo__img" src="../assets/logo.webp" alt=""></router-link>
+      <router-link class="logo" to="/"><img class="logo__img" src="../assets/logo.webp" alt="" width="80px"></router-link>
       <form class="header__search" @submit.prevent>
         <input type="text" :placeholder="$t('header.search')" v-model="searchField">
         <my-button class="header__search-btn" @click="search">

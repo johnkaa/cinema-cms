@@ -11,9 +11,9 @@ export default {
         },
     },
     mutations: {
-        readFilmsNowData(state) {
-            const filmsNowRef = ref(db, 'films/filmsNow')
-            onValue(filmsNowRef, (snapshot) => {
+        async readFilmsNowData(state) {
+            const filmsNowRef = await ref(db, 'films/filmsNow')
+            await onValue(filmsNowRef, (snapshot) => {
                 state.database = snapshot.val()
             })
         },

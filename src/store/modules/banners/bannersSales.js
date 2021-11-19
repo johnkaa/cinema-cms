@@ -19,9 +19,9 @@ export default {
         },
     },
     mutations: {
-        readData(state) {
-            const bannerRef = ref(db, 'banners/mainSales')
-            onValue(bannerRef, (snapshot) => {
+        async readData(state) {
+            const bannerRef = await ref(db, 'banners/mainSales')
+            await onValue(bannerRef, (snapshot) => {
                 state.database = snapshot.val()
             })
         },

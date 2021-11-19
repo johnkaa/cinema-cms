@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <img class="bg" :src="this.getStateBanner.database.img" alt="">
+    <img class="bg" :src="this.getStateBanner.database.img" alt="" v-if="this.getStateBanner.database.type === 'Фото на фон'">
     <div class="banners__top" v-if="this.getStateBannersTop.database.active">
       <carousel :slider="this.getStateBannersTop.database"/>
     </div>
@@ -9,7 +9,7 @@
       <div class="films-now__items films__items">
         <div class="films-now__item films__item" v-for="item in filmsNow" :key="item.id">
           <router-link :to="'/films/now/' + item.id">
-            <img :src="item.img" alt="">
+            <img :src="item.img" alt="" width="400px" height="400px">
             <p class="films-now__name films__name">{{ item.title }}</p>
           </router-link>
           <my-button class="films-now__btn">{{ $t('home.buy') }}</my-button>
@@ -21,7 +21,7 @@
       <div class="films-soon__items films__items">
         <div class="films-soon__item films__item" v-for="item in filmsSoon" :key="item.id">
           <router-link :to="'/films/soon/' + item.id">
-            <img :src="item.img" alt="">
+            <img :src="item.img" alt="" width="400px" height="400px">
             <p class="films-soon__name films__name">{{ item.title }}</p>
           </router-link>
           <p class="films-soon__date">С {{dateSoon}}</p>
@@ -60,7 +60,7 @@ export default {
       this.uploadData()
     }
   },
-  computed: mapGetters(['getStateBannersTop', 'getStateBanner', 'getStateBannersSales', 'getStateFilmsNow', 'getStateFilmsSoon', 'getStateLang']),
+  computed: mapGetters(['getStateBannersTop', 'getStateBanner', 'getStateBannersSales']),
   data() {
     return {
       filmsNow: {},

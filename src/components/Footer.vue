@@ -5,10 +5,10 @@
         <h4 class="apps__title">{{ $t('footer.mobile') }}</h4>
         <div class="apps__items">
           <div class="apps__item">
-            <a href=""><img src="../assets/icons/gplay.webp" alt=""></a>
+            <a href=""><img src="../assets/icons/gplay.webp" alt="" width="200px" height="60px"></a>
           </div>
           <div class="apps__item">
-            <a href=""><img src="../assets/icons/app-store.webp" alt=""></a>
+            <a href=""><img src="../assets/icons/app-store.webp" alt="" width="200px" height="60px"></a>
           </div>
         </div>
       </div>
@@ -70,9 +70,9 @@ export default {
         this.pages = snapshot.val()
       })
       Object.keys(this.pages).forEach((element) => {
-        if(this.pages[element].id == '0' ||
-            this.pages[element].id == '1' ||
-            this.pages[element].id == '2') {
+        if(this.pages[element].id === '0' ||
+            this.pages[element].id === '1' ||
+            this.pages[element].id === '2') {
           delete this.pages[element]
         }
       })
@@ -108,7 +108,7 @@ export default {
 }
 .apps__item img {
   width: 200px;
-  height: 65px;
+  height: 60px;
   object-fit: fill;
 }
 .footer__list {

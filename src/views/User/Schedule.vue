@@ -117,7 +117,9 @@ export default {
       this.now = dateObj.getDate() + '.' + (dateObj.getMonth() + 1) + '.' + dateObj.getFullYear()
     }
     this.setupItems()
-    this.setupDateList()
+    setTimeout(() => {
+      this.setupDateList()
+    },300)
     if(this.$route.query.cinema) {
       this.cinemas = this.$route.query.cinema
       if(this.$route.query.hall) {
@@ -143,6 +145,10 @@ export default {
       this.setupItems()
       this.setupDateList()
     },
+    hallsList() {
+      this.setupItems()
+      this.setupDateList()
+    }
   },
   data() {
     return {
