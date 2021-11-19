@@ -1,8 +1,8 @@
 <template>
   <div class="order">
-    <img class="order__img" :src="hallImg" alt="" />
+    <img class="order__img" v-lazy="{ src: hallImg, loading: 'https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=ecf05e47on66p48qsf04xv9no0it5htgx7uzbpa4wx0kd1zg&rid=giphy.gif&ct=g'}" alt="" />
     <div class="order__inner">
-      <img class="order__film-img" :src="filmImg" alt="" />
+      <img class="order__film-img" v-lazy="{ src: filmImg, loading: 'https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=ecf05e47on66p48qsf04xv9no0it5htgx7uzbpa4wx0kd1zg&rid=giphy.gif&ct=g'}" alt="" />
       <div class="order__info">
         <div class="order__film-name">{{ scheduleItem.film }}</div>
         <div class="order__info-date">{{ scheduleItem.date + ', ' + scheduleItem.time + ', ' + scheduleItem.hall }}</div>

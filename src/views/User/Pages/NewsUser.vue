@@ -4,7 +4,7 @@
     <div class="news__items">
       <div class="news__item" v-for="item in news" :key="item.id">
         <div class="news__item-inner" v-if="item.actual">
-          <img class="news__item-img" :src="item.img" alt="">
+          <img class="news__item-img" v-lazy="{ src: item.img, loading: 'https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=ecf05e47on66p48qsf04xv9no0it5htgx7uzbpa4wx0kd1zg&rid=giphy.gif&ct=g'}" alt="">
           <div class="news__item-title">{{ item.name }}</div>
           <div class="news__item-date">{{ item.date }}</div>
           <div class="news__item-desc">{{ item.description }}</div>

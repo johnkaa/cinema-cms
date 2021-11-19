@@ -8,7 +8,7 @@
       </div>
       <p class="poster-soon__date poster-films__date">С {{ dateSoon }}</p>
       <router-link :to="'/films/soon/' + item.id">
-        <img :src="item.img" alt="">
+        <img v-lazy="{ src: item.img, loading: 'https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=ecf05e47on66p48qsf04xv9no0it5htgx7uzbpa4wx0kd1zg&rid=giphy.gif&ct=g'}" alt="">
         <p class="poster-soon__name poster-films__name">{{ item.title }}</p>
       </router-link>
       <my-button class="poster-soon__btn poster-films__btn">{{ $t('poster.buy') }}</my-button>

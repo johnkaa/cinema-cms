@@ -2,7 +2,7 @@
   <div class="search">
     <div class="search__items">
       <div class="search__item" v-for="(item, index) in filmsByName" :key="index" @click="routeFilm(item, index)">
-        <img class="search__item-img" :src="item.img" alt="">
+        <img class="search__item-img" v-lazy="{ src: item.img, loading: 'https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=ecf05e47on66p48qsf04xv9no0it5htgx7uzbpa4wx0kd1zg&rid=giphy.gif&ct=g'}" alt="">
         <p class="search__item-name">{{ item.title }}</p>
       </div>
     </div>

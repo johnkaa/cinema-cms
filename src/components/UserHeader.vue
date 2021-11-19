@@ -9,10 +9,10 @@
         </my-button>
       </form>
       <ul class="social">
-        <li><a href="https://facebook.com"><span class="social__img iconify" data-icon="brandico:facebook" style="color: #2e6cff;"></span></a></li>
-        <li><a href="https://twitter.com"><span class="social__img iconify" data-icon="logos:twitter"></span></a></li>
-        <li><a href="https://youtube.com"><span class="social__img iconify" data-icon="logos:youtube-icon"></span></a></li>
-        <li><a href="https://instagram.com"><span class="social__img iconify" data-icon="akar-icons:instagram-fill" style="color: #ff8463;"></span></a></li>
+        <li><a href="#"><span class="social__img iconify" data-icon="brandico:facebook" style="color: #2e6cff;"></span></a></li>
+        <li><a href="#"><span class="social__img iconify" data-icon="logos:twitter"></span></a></li>
+        <li><a href="#"><span class="social__img iconify" data-icon="logos:youtube-icon"></span></a></li>
+        <li><a href="#"><span class="social__img iconify" data-icon="akar-icons:instagram-fill" style="color: #ff8463;"></span></a></li>
       </ul>
       <div class="numbers">
         <div><a :href="'tel:' + this.phone">+{{ phone }}</a></div>

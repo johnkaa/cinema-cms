@@ -9,7 +9,7 @@
     }"
     >
       <swiper-slide class="swiper-slide" v-for="item in slider.items" :key="item.id">
-        <router-link :to="item.url"><img :src="item.img" alt="" width="1200px" height="600px"></router-link>
+        <router-link :to="item.url"><img v-lazy="{ src: item.img, loading: 'https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=ecf05e47on66p48qsf04xv9no0it5htgx7uzbpa4wx0kd1zg&rid=giphy.gif&ct=g'}" alt="" width="1200px" height="600px"></router-link>
         <p class="swiper-slide__text" v-if="item.text">{{ item.text }}</p>
       </swiper-slide>
     </swiper>
