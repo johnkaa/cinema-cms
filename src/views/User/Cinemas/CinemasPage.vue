@@ -64,14 +64,14 @@ export default {
     }
   },
   methods: {
-    setupCinema() {
-      const cinemasRef = ref(db, `cinemas/${this.id}`)
-      onValue(cinemasRef, (snapshot) => {
+    async setupCinema() {
+      const cinemasRef = await ref(db, `cinemas/${this.id}`)
+      await onValue(cinemasRef, (snapshot) => {
         this.cinemaName = snapshot.val().title
       })
       if(this.$i18n.locale === 'ua') {
-        const cinemaRef = ref(db, `cinemas/${this.id}/ua`)
-        onValue(cinemaRef, (snapshot) => {
+        const cinemaRef = await ref(db, `cinemas/${this.id}/ua`)
+        await onValue(cinemaRef, (snapshot) => {
           const data = snapshot.val()
           this.name = data.title
           this.desc = data.description
@@ -81,16 +81,16 @@ export default {
           this.gallery = data.gallery
           this.halls = data.halls
         })
-        const hallsRef = ref(db, `cinemas/${this.id}/halls`)
-        onValue(hallsRef, (snapshot) => {
+        const hallsRef = await ref(db, `cinemas/${this.id}/halls`)
+        await onValue(hallsRef, (snapshot) => {
           this.halls = snapshot.val()
         })
         Object.keys(this.halls).forEach((item) => {
           this.halls[item] = this.halls[item].ua
         })
       } else {
-        const cinemaRef = ref(db, `cinemas/${this.id}`)
-        onValue(cinemaRef, (snapshot) => {
+        const cinemaRef = await ref(db, `cinemas/${this.id}`)
+        await onValue(cinemaRef, (snapshot) => {
           const data = snapshot.val()
           this.name = data.title
           this.desc = data.description

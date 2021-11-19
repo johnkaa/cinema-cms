@@ -106,20 +106,20 @@ export default {
       await onValue(pagesRef, (snapshot) => {
         pages = snapshot.val()
       })
-      await Object.keys(pages).forEach((element) => {
+      Object.keys(pages).forEach((element) => {
         if(pages[element].id === '0' ||
             pages[element].id === '1' ||
             pages[element].id === '2') {
           delete pages[element]
         }
       })
-      await Object.keys(pages).forEach((element) => {
+      Object.keys(pages).forEach((element) => {
         if(!pages[element].actual) {
           delete pages[element]
         }
       })
       if(this.$i18n.locale === 'ua') {
-        await Object.keys(pages).forEach((element) => {
+        Object.keys(pages).forEach((element) => {
           pages[element] = pages[element].ua
         })
       }

@@ -89,11 +89,11 @@ export default {
     }
   },
   methods: {
-    setupFilm() {
+    async setupFilm() {
       const actual = this.actual[0].toUpperCase() + this.actual.slice(1)
       if(this.$i18n.locale === 'ua') {
-        const filmRef = ref(db, `films/films${actual}/${this.id}/ua`)
-        onValue(filmRef, (snapshot) => {
+        const filmRef = await ref(db, `films/films${actual}/${this.id}/ua`)
+        await onValue(filmRef, (snapshot) => {
           const data = snapshot.val()
           this.name = data.title
           this.desc = data.description
@@ -103,8 +103,8 @@ export default {
           this.soon = data.soon
         })
       } else {
-        const filmRef = ref(db, `films/films${actual}/${this.id}`)
-        onValue(filmRef, (snapshot) => {
+        const filmRef = await ref(db, `films/films${actual}/${this.id}`)
+        await onValue(filmRef, (snapshot) => {
           const data = snapshot.val()
           this.name = data.title
           this.desc = data.description
@@ -115,8 +115,8 @@ export default {
         })
       }
       if(this.$i18n.locale === 'ua') {
-        const scheduleRef = ref(db, 'schedule')
-        onValue(scheduleRef, (snapshot) => {
+        const scheduleRef = await ref(db, 'schedule')
+        await onValue(scheduleRef, (snapshot) => {
           const data = snapshot.val()
           Object.keys(data).forEach((item) => {
             if(data[item].film === this.name) {
@@ -129,8 +129,8 @@ export default {
           })
         })
       } else {
-        const scheduleRef = ref(db, 'schedule')
-        onValue(scheduleRef, (snapshot) => {
+        const scheduleRef = await ref(db, 'schedule')
+        await onValue(scheduleRef, (snapshot) => {
           const data = snapshot.val()
           Object.keys(data).forEach((item) => {
             if(data[item].film === this.name) {

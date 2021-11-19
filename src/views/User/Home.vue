@@ -96,10 +96,10 @@ export default {
         await onValue(seoRef, (snapshot) => {
           this.description = snapshot.val()
         })
-        await Object.keys(this.filmsNow).forEach((element) => {
+        Object.keys(this.filmsNow).forEach((element) => {
           this.filmsNow[element] = this.filmsNow[element].ua
         })
-        await Object.keys(this.filmsSoon).forEach((element) => {
+        Object.keys(this.filmsSoon).forEach((element) => {
           this.filmsSoon[element] = this.filmsSoon[element].ua
         })
       } else {

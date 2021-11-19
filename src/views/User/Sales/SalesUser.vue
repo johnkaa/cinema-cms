@@ -34,9 +34,9 @@ export default {
     }
   },
   methods: {
-    setupSales() {
-      const salesRef = ref(db, 'sales')
-      onValue(salesRef, (snapshot) => {
+    async setupSales() {
+      const salesRef = await ref(db, 'sales')
+      await onValue(salesRef, (snapshot) => {
         this.sales = snapshot.val()
       })
       if(this.$i18n.locale === 'ua') {

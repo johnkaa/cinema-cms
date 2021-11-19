@@ -4,7 +4,7 @@
       <div class="schedule__select">
         <select v-model="cinemas" @change="cinemasSelect">
           <option value="all">{{ $t('schedule.cinemas') }}</option>
-          <option v-for="item in getStateCinemas.database" :key="item.id" :value="item.title">{{ item.title }}</option>
+          <option v-for="item in this.getStateCinemas.database" :key="item.id" :value="item.title">{{ item.title }}</option>
         </select>
       </div>
       <div class="schedule__select">
@@ -16,7 +16,7 @@
       <div class="schedule__select">
         <select v-model="films">
           <option value="all">{{ $t('schedule.films') }}</option>
-          <option v-for="item in getStateFilmsNow.database" :key="item.id" :value="item.title">{{ item.title }}</option>
+          <option v-for="item in this.getStateFilmsNow.database" :key="item.id" :value="item.title">{{ item.title }}</option>
         </select>
       </div>
       <div class="schedule__select">

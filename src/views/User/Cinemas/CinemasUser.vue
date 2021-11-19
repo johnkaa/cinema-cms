@@ -1,4 +1,4 @@
-<template>
+await <template>
   <div class="cinemas">
     <h2 class="cinemas__title title">{{ $t('cinemas.title') }}</h2>
     <div class="cinemas__items">
@@ -32,9 +32,9 @@ export default {
     }
   },
   methods: {
-    setupCinemas() {
-      const cinemasRef = ref(db, 'cinemas')
-      onValue(cinemasRef, (snapshot) => {
+    async setupCinemas() {
+      const cinemasRef = await ref(db, 'cinemas')
+      await onValue(cinemasRef, (snapshot) => {
         this.cinemas = snapshot.val()
       })
       if(this.$i18n.locale === 'ua') {

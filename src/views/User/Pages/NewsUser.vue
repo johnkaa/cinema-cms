@@ -34,9 +34,9 @@ export default {
     }
   },
   methods: {
-    setupNews() {
-      const newsRef = ref(db, 'news')
-      onValue(newsRef, (snapshot) => {
+    async setupNews() {
+      const newsRef = await ref(db, 'news')
+      await onValue(newsRef, (snapshot) => {
         this.news = snapshot.val()
       })
       if(this.$i18n.locale === 'ua') {

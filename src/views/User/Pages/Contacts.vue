@@ -39,15 +39,15 @@ export default {
     }
   },
   methods: {
-    setupContacts() {
+    async setupContacts() {
       if(this.$i18n.locale === 'ua') {
-        const contactsRef = ref(db, 'pages/2/ua/contacts')
-        onValue(contactsRef, (snapshot) => {
+        const contactsRef = await ref(db, 'pages/2/ua/contacts')
+        await onValue(contactsRef, (snapshot) => {
           this.contacts = snapshot.val()
         })
       } else {
-        const contactsRef = ref(db, 'pages/2/contacts')
-        onValue(contactsRef, (snapshot) => {
+        const contactsRef = await ref(db, 'pages/2/contacts')
+        await onValue(contactsRef, (snapshot) => {
           this.contacts = snapshot.val()
         })
       }

@@ -4,7 +4,7 @@
     <div class="page__inner">
       <div class="page__block">
         <h4 class="page__title">{{ page.name }}</h4>
-        <p class="page__desc">{{ page.description }}1</p>
+        <p class="page__desc">{{ page.description }}</p>
         <h4 class="page__title">Фотогалерея</h4>
         <gallery-carousel class="page__gallery" :slider="page.gallery"/>
       </div>
@@ -42,14 +42,14 @@ export default {
     }
   },
   methods: {
-    setupPage() {
-      const cinemaRef = ref(db, `pages/${this.id}`)
-      onValue(cinemaRef, (snapshot) => {
+    async setupPage() {
+      const cinemaRef = await ref(db, `pages/${this.id}`)
+      await onValue(cinemaRef, (snapshot) => {
         this.page = snapshot.val()
       })
       if (this.$i18n.locale === 'ua') {
-        const cinemaRef = ref(db, `pages/${this.id}/ua`)
-        onValue(cinemaRef, (snapshot) => {
+        const cinemaRef = await ref(db, `pages/${this.id}/ua`)
+        await onValue(cinemaRef, (snapshot) => {
           this.page = snapshot.val()
         })
       }

@@ -38,9 +38,9 @@ export default {
     }
   },
   methods: {
-    setupPosterNow() {
-      const filmsNowRef = ref(db, 'films/filmsNow')
-      onValue(filmsNowRef, (snapshot) => {
+    async setupPosterNow() {
+      const filmsNowRef = await ref(db, 'films/filmsNow')
+      await onValue(filmsNowRef, (snapshot) => {
         this.filmsNow = snapshot.val()
       })
       if(this.$i18n.locale === 'ua') {

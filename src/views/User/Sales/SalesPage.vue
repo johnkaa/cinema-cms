@@ -35,11 +35,11 @@ export default {
     }
   },
   methods: {
-    setupSalesPage() {
+    async setupSalesPage() {
       console.log('setup')
       if (this.$i18n.locale === 'ua') {
-        const salesRef = ref(db, `sales/${this.id}/ua`)
-        onValue(salesRef, (snapshot) => {
+        const salesRef = await ref(db, `sales/${this.id}/ua`)
+        await onValue(salesRef, (snapshot) => {
           const data = snapshot.val()
           this.name = data.name
           this.desc = data.description
@@ -48,8 +48,8 @@ export default {
           this.gallery = data.gallery
         })
       } else {
-        const salesRef = ref(db, `sales/${this.id}`)
-        onValue(salesRef, (snapshot) => {
+        const salesRef = await ref(db, `sales/${this.id}`)
+        await onValue(salesRef, (snapshot) => {
           const data = snapshot.val()
           this.name = data.name
           this.desc = data.description

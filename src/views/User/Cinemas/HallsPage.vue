@@ -54,14 +54,14 @@ export default {
     }
   },
   methods: {
-    setupHall() {
+    async setupHall() {
       let data = {}
-      const cinemasRef = ref(db, `cinemas/${this.cinemaID}`)
-      onValue(cinemasRef, (snapshot) => {
+      const cinemasRef = await ref(db, `cinemas/${this.cinemaID}`)
+      await onValue(cinemasRef, (snapshot) => {
         this.cinemaName = snapshot.val().title
       })
-      const hallRef = ref(db, `cinemas/${this.cinemaID}/halls/${this.hallID}`)
-      onValue(hallRef, (snapshot) => {
+      const hallRef = await ref(db, `cinemas/${this.cinemaID}/halls/${this.hallID}`)
+      await onValue(hallRef, (snapshot) => {
         data = snapshot.val()
       })
       if(this.$i18n.locale === 'ua') {

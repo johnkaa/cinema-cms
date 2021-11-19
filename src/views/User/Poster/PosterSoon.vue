@@ -41,12 +41,12 @@ export default {
     }
   },
   methods: {
-    setupPosterSoon() {
+    async setupPosterSoon() {
       const dateObj = new Date()
       this.date = dateObj.getDate() + ' ' +  this.months[(dateObj.getMonth())]
       this.dateSoon = '1 ' + this.months[(dateObj.getMonth() + 1)]
-      const filmsSoonRef = ref(db, 'films/filmsSoon')
-      onValue(filmsSoonRef, (snapshot) => {
+      const filmsSoonRef = await ref(db, 'films/filmsSoon')
+      await onValue(filmsSoonRef, (snapshot) => {
         this.filmsSoon = snapshot.val()
       })
       if(this.$i18n.locale === 'ua') {
