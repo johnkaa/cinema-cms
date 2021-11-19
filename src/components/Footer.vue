@@ -5,10 +5,10 @@
         <h4 class="apps__title">{{ $t('footer.mobile') }}</h4>
         <div class="apps__items">
           <div class="apps__item">
-            <a href=""><img src="../assets/icons/gplay.png" alt=""></a>
+            <a href=""><img src="../assets/icons/gplay.webp" alt=""></a>
           </div>
           <div class="apps__item">
-            <a href=""><img src="../assets/icons/app-store.png" alt=""></a>
+            <a href=""><img src="../assets/icons/app-store.webp" alt=""></a>
           </div>
         </div>
       </div>
@@ -25,10 +25,10 @@
         <li v-for="item in pages" :key="item.id"><router-link :to="'/pages/' + item.id">{{ item.name }}</router-link></li>
       </ul>
       <ul class="social">
-        <li><a href="https://facebook.com"><img class="social__img" src="http://s1.iconbird.com/ico/2013/6/271/w513h5131371296104Facebook.png" alt=""></a></li>
-        <li><a href="https://twitter.com"><img class="social__img" src="https://cdn-icons-png.flaticon.com/512/145/145812.png" alt=""></a></li>
-        <li><a href="https://youtube.com"><img class="social__img" src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt=""></a></li>
-        <li><a href="https://instagram.com"><img class="social__img" src="https://cdn-icons-png.flaticon.com/512/1409/1409946.png" alt=""></a></li>
+        <li><a href="https://facebook.com"><span class="social__img iconify" data-icon="brandico:facebook" style="color: #2e6cff;"></span></a></li>
+        <li><a href="https://twitter.com"><span class="social__img iconify" data-icon="logos:twitter"></span></a></li>
+        <li><a href="https://youtube.com"><span class="social__img iconify" data-icon="logos:youtube-icon"></span></a></li>
+        <li><a href="https://instagram.com"><span class="social__img iconify" data-icon="akar-icons:instagram-fill" style="color: #ff8463;"></span></a></li>
       </ul>
     </div>
     <p class="footer__copyright">@KinoCMS 2021, all rights reserved</p>
@@ -47,34 +47,42 @@ export default {
   watch: {
     '$i18n.locale'() {
       this.uploadPages()
+    },
+    phone() {
+      this.uploadPages()
     }
   },
   data() {
     return {
       pages: '',
-      componentKey: 0
+      componentKey: 0,
+      phone: ''
     }
   },
   methods: {
-    uploadPages() {
-      const pagesRef = ref(db, 'pages')
-      onValue(pagesRef, (snapshot) => {
+    async uploadPages() {
+      const phoneRef = await ref(db, 'pages/0/phone')
+      await onValue(phoneRef, (snapshot) => {
+        this.phone = snapshot.val()
+      })
+      const pagesRef = await ref(db, 'pages')
+      await onValue(pagesRef, (snapshot) => {
         this.pages = snapshot.val()
       })
-      Object.keys(this.pages).forEach((element) => {
+      await Object.keys(this.pages).forEach((element) => {
         if(this.pages[element].id == '0' ||
             this.pages[element].id == '1' ||
             this.pages[element].id == '2') {
           delete this.pages[element]
         }
       })
-      Object.keys(this.pages).forEach((element) => {
+      await Object.keys(this.pages).forEach((element) => {
         if(!this.pages[element].actual) {
           delete this.pages[element]
         }
       })
       if(this.$i18n.locale === 'ua') {
-        Object.keys(this.pages).forEach((element) => {
+        await Object.keys(this.pages).forEach((element) => {
           this.pages[element] = this.pages[element].ua
         })
       }
@@ -116,7 +124,7 @@ export default {
     margin-left: 20px;
   }
   &__img {
-    width: 24px;
+    font-size: 20px;
   }
 }
 .footer__copyright {

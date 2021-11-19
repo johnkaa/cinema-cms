@@ -19,20 +19,13 @@
 
 <script>
 import Header from "../Header";
-import {mapGetters, mapMutations} from "vuex";
+import {mapMutations} from "vuex";
 
 export default {
   name: "AdminLayout",
   components: {Header},
-  computed: mapGetters(['getStateAuth']),
   mounted() {
     this.getUser()
-    // if(this.getStateAuth.currentUser.id !== 4) {
-    //   alert('Вы не админ')
-    //   this.$router.push({
-    //     path: '/'
-    //   })
-    // }
   },
   methods: {
     ...mapMutations(['getUser'])

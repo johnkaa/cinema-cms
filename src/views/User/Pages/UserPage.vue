@@ -1,12 +1,12 @@
 <template>
-  <div className="page">
-    <img className="page__img" :src="page.img" alt="">
-    <div className="page__inner">
-      <div className="page__block">
-        <h4 className="page__title">{{ page.name }}</h4>
-        <p className="page__desc">{{ page.description}}</p>
-        <h4 className="page__title">Фотогалерея</h4>
-        <gallery-carousel className="page__gallery" :slider="page.gallery"/>
+  <div class="page">
+    <img class="page__img" :src="page.img" alt="">
+    <div class="page__inner">
+      <div class="page__block">
+        <h4 class="page__title">{{ page.name }}</h4>
+        <p class="page__desc">{{ page.description }}1</p>
+        <h4 class="page__title">Фотогалерея</h4>
+        <gallery-carousel class="page__gallery" :slider="page.gallery"/>
       </div>
     </div>
   </div>
@@ -34,6 +34,11 @@ export default {
   watch: {
     '$i18n.locale'() {
       this.setupPage()
+    },
+    '$route.path'() {
+      setTimeout(() => {
+        this.setupPage()
+      }, 200)
     }
   },
   methods: {

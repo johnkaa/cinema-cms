@@ -24,7 +24,12 @@ export default {
                             description: '',
                             scheme: 'https://via.placeholder.com/200',
                             img: 'https://via.placeholder.com/400',
-                            gallery: {},
+                            gallery: {
+                                [(+new Date()-(+new Date()%100)) / 100]: {
+                                    id: (+new Date()-(+new Date()%100)) / 100,
+                                    img: 'https://via.placeholder.com/200'
+                                }
+                            },
                             seo: {
                                 url: '',
                                 title: '',
@@ -34,7 +39,30 @@ export default {
                             date: now,
                             file: null,
                             schemeFile: null,
-                            hall: null
+                            hall: null,
+                            ua: {
+                                id: (+new Date()-(+new Date()%100)) / 100,
+                                name: 'ЗалUA',
+                                description: '',
+                                scheme: 'https://via.placeholder.com/200',
+                                img: 'https://via.placeholder.com/400',
+                                gallery: {
+                                    [((+new Date()-(+new Date()%100)) / 100) + 5]: {
+                                        id: ((+new Date()-(+new Date()%100)) / 100) + 5,
+                                        img: 'https://via.placeholder.com/200'
+                                    }
+                                },
+                                seo: {
+                                    url: '',
+                                    title: '',
+                                    keywords: '',
+                                    description: '',
+                                },
+                                date: now,
+                                file: null,
+                                schemeFile: null,
+                                hall: null,
+                            }
                         }
                         return state.halls[(+new Date()-(+new Date()%100)) / 100].gallery[(+new Date()-(+new Date()%100)) / 100] = {
                             id: (+new Date()-(+new Date()%100)) / 100,

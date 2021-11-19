@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <div class="header__top">
-      <router-link class="logo" to="/"><img class="logo__img" src="../assets/logo.jpg" alt=""></router-link>
+      <router-link class="logo" to="/"><img class="logo__img" src="../assets/logo.webp" alt=""></router-link>
       <form class="header__search" @submit.prevent>
         <input type="text" :placeholder="$t('header.search')" v-model="searchField">
         <my-button class="header__search-btn" @click="search">
@@ -9,10 +9,10 @@
         </my-button>
       </form>
       <ul class="social">
-        <li><a href="https://facebook.com"><img class="social__img" src="http://s1.iconbird.com/ico/2013/6/271/w513h5131371296104Facebook.png" alt=""></a></li>
-        <li><a href="https://twitter.com"><img class="social__img" src="https://cdn-icons-png.flaticon.com/512/145/145812.png" alt=""></a></li>
-        <li><a href="https://youtube.com"><img class="social__img" src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt=""></a></li>
-        <li><a href="https://instagram.com"><img class="social__img" src="https://cdn-icons-png.flaticon.com/512/1409/1409946.png" alt=""></a></li>
+        <li><a href="https://facebook.com"><span class="social__img iconify" data-icon="brandico:facebook" style="color: #2e6cff;"></span></a></li>
+        <li><a href="https://twitter.com"><span class="social__img iconify" data-icon="logos:twitter"></span></a></li>
+        <li><a href="https://youtube.com"><span class="social__img iconify" data-icon="logos:youtube-icon"></span></a></li>
+        <li><a href="https://instagram.com"><span class="social__img iconify" data-icon="akar-icons:instagram-fill" style="color: #ff8463;"></span></a></li>
       </ul>
       <div class="numbers">
         <div><a :href="'tel:' + this.phone">+{{ phone }}</a></div>
@@ -22,10 +22,10 @@
           <my-button>Админка</my-button>
         </router-link>
         <router-link class="header__cabinet" href="/" to="/cabinet">
-          <img class="header__cabinet-img" src="../assets/icons/cabinet.png" alt="">{{ $t('header.cabinet') }}
+          <span class="header__cabinet-icon iconify" data-icon="bx:bxs-user-circle"></span>{{ $t('header.cabinet') }}
         </router-link>
         <div @click="logout">
-          <a class="header__quit" href="/"><img class="header__quit-img" src="../assets/icons/quit.png" alt=""></a>
+          <a class="header__quit" href="/"><span class="iconify" data-icon="ls:logout"></span></a>
         </div>
       </div>
       <div class="header__btns" v-else-if="!this.getStateAuth.auth">
@@ -74,6 +74,9 @@ export default {
   watch: {
     '$i18n.locale'() {
       this.loadHeader()
+    },
+    phone() {
+      this.loadHeader()
     }
   },
   mounted() {
@@ -93,32 +96,34 @@ export default {
       const auth = getAuth()
       signOut(auth)
     },
-    loadHeader() {
-      const phoneRef = ref(db, 'pages/0/phone')
-      onValue(phoneRef, (snapshot) => {
+    async loadHeader() {
+      let pages = {}
+      const phoneRef = await ref(db, 'pages/0/phone')
+      await onValue(phoneRef, (snapshot) => {
         this.phone = snapshot.val()
       })
-      const pagesRef = ref(db, 'pages')
-      onValue(pagesRef, (snapshot) => {
-        this.pages = snapshot.val()
+      const pagesRef = await ref(db, 'pages')
+      await onValue(pagesRef, (snapshot) => {
+        pages = snapshot.val()
       })
-      Object.keys(this.pages).forEach((element) => {
-        if(this.pages[element].id == '0' ||
-            this.pages[element].id == '1' ||
-            this.pages[element].id == '2') {
-          delete this.pages[element]
+      await Object.keys(pages).forEach((element) => {
+        if(pages[element].id === '0' ||
+            pages[element].id === '1' ||
+            pages[element].id === '2') {
+          delete pages[element]
         }
       })
-      Object.keys(this.pages).forEach((element) => {
-        if(!this.pages[element].actual) {
-          delete this.pages[element]
+      await Object.keys(pages).forEach((element) => {
+        if(!pages[element].actual) {
+          delete pages[element]
         }
       })
       if(this.$i18n.locale === 'ua') {
-        Object.keys(this.pages).forEach((element) => {
-          this.pages[element] = this.pages[element].ua
+        await Object.keys(pages).forEach((element) => {
+          pages[element] = pages[element].ua
         })
       }
+      this.pages = pages
     },
     search() {
       this.$router.push({
@@ -154,6 +159,7 @@ export default {
 }
 .header__btns {
   display: flex;
+  align-items: center;
 }
 .header__btn + .header__btn {
   margin-left: 15px;
@@ -166,12 +172,12 @@ export default {
   margin-right: 20px;
   color: #000;
 }
-.header__cabinet-img {
-  width: 30px;
-  margin-right: 20px;
+.header__cabinet-icon {
+  font-size: 50px;
+  margin-right: 10px;
 }
-.header__quit-img {
-  width: 30px;
+.header__quit {
+  font-size: 30px;
 }
 .social {
   display: flex;
@@ -179,7 +185,7 @@ export default {
     margin-left: 20px;
   }
   &__img {
-    width: 24px;
+    font-size: 20px;
   }
 }
 .numbers {

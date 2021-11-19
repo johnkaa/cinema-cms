@@ -22,10 +22,11 @@
       </div>
       <div class="film__schedule-not-found info text-danger" v-if="!Object.keys(filteredItems).length">{{ $t('schedule.not-found') }}</div>
     </div>
+    <div class="films__soon info text-success" v-else>Скоро появится в прокате</div>
     <div class="film__inner">
       <img class="film__img" :src="img" alt="">
       <div class="film__info">
-        <my-button class="film__btn">{{ $t('film.buy') }}</my-button>
+        <my-button class="film__btn" v-if="!soon">{{ $t('film.buy') }}</my-button>
         <h4 class="film__title">{{ name }}</h4>
         <p class="film__desc">{{ desc }}</p>
         <div class="film__title">{{ $t('film.posters') }}</div>

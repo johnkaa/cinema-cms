@@ -25,7 +25,7 @@ export default {
         },
         async getDownloadCinemaURL(state, path) {
             if(path.ua) {
-                state.mainImgUrl = await getDownloadURL(ref(ref(storage, `cinemas/${path.id}/mainImgUa`)))
+                state.mainImgUrlUa = await getDownloadURL(ref(ref(storage, `cinemas/${path.id}/mainImgUa`)))
             } else {
                 state.mainImgUrl = await getDownloadURL(ref(ref(storage, `cinemas/${path.id}/mainImg`)))
             }

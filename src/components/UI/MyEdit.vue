@@ -1,5 +1,5 @@
 <template>
-  <button class="edit"><img src="../../assets/icons/edit.png" alt=""></button>
+  <button class="edit"><span class="iconify" data-icon="clarity:edit-line"></span></button>
 </template>
 
 <script>
@@ -17,9 +17,6 @@ export default {
     right: -70px;
     top: 50%;
     transform: translateY(-50%);
-  }
-  .edit img {
-    width: 30px;
-    height: 30px;
+    font-size: 30px;
   }
 </style>

@@ -101,8 +101,8 @@ export default {
             description: '',
             img: 'https://via.placeholder.com/400',
             gallery: {
-              999: {
-                id: 999,
+              [(+new Date()-(+new Date()%100)) / 100]: {
+                id: (+new Date()-(+new Date()%100)) / 100,
                 img: 'https://via.placeholder.com/200'
               }
             },
@@ -120,8 +120,8 @@ export default {
               description: '',
               img: 'https://via.placeholder.com/400',
               gallery: {
-                9999: {
-                  id: 9999,
+                [((+new Date()-(+new Date()%100)) / 100) + 5]: {
+                  id: ((+new Date()-(+new Date()%100)) / 100) + 5,
                   img: 'https://via.placeholder.com/200'
                 }
               },
@@ -134,6 +134,16 @@ export default {
               }
             }
           }
+          data = this.getStateNews.database[this.id]
+          this.actual = data.actual
+          this.actualValue = data.actualValue
+          this.name = data.name
+          this.description = data.description
+          this.img = data.img
+          this.gallery = data.gallery
+          this.link = data.link
+          this.seo = data.seo
+          this.uaItem = data.ua
         } else {
           this.actual = DBdata.actual
           this.actualValue = DBdata.actualValue
@@ -190,10 +200,11 @@ export default {
       const dateObj = new Date()
       const now = dateObj.getDate() + '.' + (dateObj.getMonth() + 1) + '.' + dateObj.getFullYear()
       if(this.ua) {
+        const data = this.getStateNews.database[this.id]
         this.getStateNews.database[this.id].ua = {
           id: this.id,
-          actual: this.actual,
-          actualValue: this.actualValue,
+          actual: data.actual,
+          actualValue: data.actualValue,
           name: this.name,
           date: this.date,
           description: this.description,
@@ -203,6 +214,8 @@ export default {
           seo: this.seo,
         }
       } else {
+        this.uaItem.actual = this.actual
+        this.uaItem.actualValue = this.actualValue
         this.getStateNews.database[this.id] = {
           actual: this.actual,
           actualValue: this.actualValue,
@@ -325,7 +338,6 @@ export default {
         this.gallery = this.uaItem.gallery
         this.link = this.uaItem.link
         this.seo = this.uaItem.seo
-        this.uaItem = this.uaItem.ua
       } else {
         const data = this.getStateNews.database[this.id]
         this.getStateNews.database[this.id].ua = {

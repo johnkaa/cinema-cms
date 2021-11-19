@@ -1,9 +1,11 @@
 <template>
   <div class="sales">
     <h2 class="sales__title title">Список Акций</h2>
-    <router-link :to="'/admin/sales-edit/' + (+new Date()-(+new Date()%100)) / 100">
-      <my-button class="plus__btn"><span class="plus">+</span>Создать акцию</my-button>
-    </router-link>
+    <div class="sales__btn">
+      <router-link :to="'/admin/sales-edit/' + (+new Date()-(+new Date()%100)) / 100">
+        <my-button class="sales__plus-btn plus__btn"><span class="plus">+</span>Создать акцию</my-button>
+      </router-link>
+    </div>
     <sales-list :sales-list="this.getStateSales.database" @delete="deleteSales"/>
     <p class="info text-success" v-if="this.getStateSales.uploaded">Акция добавлена</p>
     <p class="info text-danger" v-if="this.getStateSales.deleted">Акция удалена</p>
@@ -37,13 +39,11 @@ export default {
 </script>
 
 <style scoped>
-.sales {
-  position: relative;
+.sales__btn {
+  display: flex;
+  justify-content: flex-end;
 }
-.plus__btn {
-  position: absolute;
-  right: 50px;
-  top: 20px;
+.sales__plus-btn {
   display: flex;
   align-items: center;
 }

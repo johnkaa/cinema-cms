@@ -337,6 +337,17 @@ export default {
       }
     },
     updateGallery(gallery) {
+      if(this.ua) {
+        this.getStateCinemasHalls.halls[this.id].ua.gallery[gallery.id] = {
+          id: gallery.id,
+          img: gallery.img
+        }
+      } else {
+        this.getStateCinemasHalls.halls[this.id].gallery[gallery.id] = {
+          id: gallery.id,
+          img: gallery.img
+        }
+      }
       this.gallery[gallery.id] = {
         id: gallery.id,
         img: gallery.img

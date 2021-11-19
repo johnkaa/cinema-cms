@@ -1,9 +1,11 @@
 <template>
   <div class="pages">
     <h2 class="pages__title title">Список Страниц</h2>
-    <router-link :to="'/admin/pages-edit/' + (+new Date() - (+new Date()%100)) / 100">
-      <my-button class="plus__btn"><span class="plus">+</span>Создать новую</my-button>
-    </router-link>
+    <div class="pages__btn">
+      <router-link :to="'/admin/pages-edit/' + (+new Date() - (+new Date()%100)) / 100">
+        <my-button class="pages__plus-btn"><span class="plus">+</span>Создать новую</my-button>
+      </router-link>
+    </div>
     <pages-list :pages-list="this.getStatePages.database" @delete="deletePages"/>
     <p class="info text-success" v-if="this.getStatePages.uploaded">Страница добавлена</p>
     <p class="info text-danger" v-if="this.getStatePages.deleted">Страница удалена</p>
@@ -37,13 +39,11 @@ export default {
 </script>
 
 <style scoped>
-.pages {
-  position: relative;
+.pages__btn {
+  display: flex;
+  justify-content: flex-end;
 }
-.plus__btn {
-  position: absolute;
-  right: 50px;
-  top: 20px;
+.pages__plus-btn {
   display: flex;
   align-items: center;
 }

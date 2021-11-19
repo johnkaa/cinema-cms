@@ -1,9 +1,9 @@
 <template>
   <header class="header">
-    <router-link class="logo" to="/"><img class="logo__img" src="../assets/logo.jpg" alt=""></router-link>
+    <router-link class="logo" to="/"><img class="logo__img" src="../assets/logo.webp" alt=""></router-link>
     <div class="header__btns" v-if="this.getStateAuth.auth">
       <router-link to="/" @click="logout">
-        <a class="header__quit" href="/"><img class="header__quit-img" src="../assets/icons/quit.png" alt=""></a>
+        <a class="header__quit" href="/"><span class="iconify" data-icon="ls:logout"></span></a>
       </router-link>
     </div>
     <div class="header__btns" v-if="!this.getStateAuth.auth">
@@ -54,7 +54,7 @@ export default {
   .header__btn + .header__btn {
     margin-left: 15px;
   }
-  .header__quit-img {
-    width: 30px;
+  .header__quit {
+    font-size: 30px;
   }
 </style>

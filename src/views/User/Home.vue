@@ -74,7 +74,7 @@ export default {
     }
   },
   methods: {
-    uploadData() {
+    async uploadData() {
       const dateObj = new Date()
       this.date = dateObj.getDate() + ' ' +  this.months[(dateObj.getMonth())]
       this.dateSoon = '1 ' + this.months[(dateObj.getMonth() + 1)]
@@ -83,28 +83,28 @@ export default {
         this.date = dateObj.getDate() + ' ' +  this.monthsUA[(dateObj.getMonth())]
         this.dateSoon = '1 ' + this.monthsUA[(dateObj.getMonth() + 1)]
       }
-      const filmsNowRef = ref(db, 'films/filmsNow')
-      onValue(filmsNowRef, (snapshot) => {
+      const filmsNowRef = await ref(db, 'films/filmsNow')
+      await onValue(filmsNowRef, (snapshot) => {
         this.filmsNow = snapshot.val()
       })
-      const filmsSoonRef = ref(db, 'films/filmsSoon')
-      onValue(filmsSoonRef, (snapshot) => {
+      const filmsSoonRef = await ref(db, 'films/filmsSoon')
+      await onValue(filmsSoonRef, (snapshot) => {
         this.filmsSoon = snapshot.val()
       })
       if(this.$i18n.locale === 'ua') {
-        const seoRef = ref(db, 'pages/0/ua/description')
-        onValue(seoRef, (snapshot) => {
+        const seoRef = await ref(db, 'pages/0/ua/description')
+        await onValue(seoRef, (snapshot) => {
           this.description = snapshot.val()
         })
-        Object.keys(this.filmsNow).forEach((element) => {
+        await Object.keys(this.filmsNow).forEach((element) => {
           this.filmsNow[element] = this.filmsNow[element].ua
         })
-        Object.keys(this.filmsSoon).forEach((element) => {
+        await Object.keys(this.filmsSoon).forEach((element) => {
           this.filmsSoon[element] = this.filmsSoon[element].ua
         })
       } else {
-        const seoRef = ref(db, 'pages/0/description')
-        onValue(seoRef, (snapshot) => {
+        const seoRef = await ref(db, 'pages/0/description')
+        await onValue(seoRef, (snapshot) => {
           this.description = snapshot.val()
         })
       }

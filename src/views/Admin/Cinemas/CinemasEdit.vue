@@ -243,9 +243,9 @@ export default {
                 scheme: 'https://via.placeholder.com/200',
                 img: 'https://via.placeholder.com/400',
                 gallery: {
-                  999: {
-                    id: '999',
-                    img: 'https://via.placeholder.com/200',
+                  [(+new Date()-(+new Date()%100)) / 100]: {
+                    id: (+new Date()-(+new Date()%100)) / 100,
+                    img: 'https://via.placeholder.com/200'
                   }
                 },
                 seo: {
@@ -262,9 +262,9 @@ export default {
                   scheme: 'https://via.placeholder.com/200',
                   img: 'https://via.placeholder.com/400',
                   gallery: {
-                    9999: {
-                      id: '9999',
-                      img: 'https://via.placeholder.com/200',
+                    [((+new Date()-(+new Date()%100)) / 100) + 5]: {
+                      id: ((+new Date()-(+new Date()%100)) / 100) + 5,
+                      img: 'https://via.placeholder.com/200'
                     }
                   },
                   seo: {
@@ -328,7 +328,6 @@ export default {
             this.uaItem = data.ua
           }
         })
-
       }
       if(this.$route.query.id) {
         const hall = this.$route.query

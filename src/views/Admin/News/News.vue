@@ -1,9 +1,11 @@
 <template>
   <div class="news">
-    <h2 class="news__title title">Список Новостей</h2>
-    <router-link :to="'/admin/news-edit/' + (+new Date()-(+new Date()%100)) / 100">
-      <my-button class="plus__btn"><span class="plus">+</span>Создать новость</my-button>
-    </router-link>
+    <h2 class="news__title title">Список новостей</h2>
+    <div class="news__btn">
+      <router-link :to="'/admin/news-edit/' + (+new Date()-(+new Date()%100)) / 100">
+      <my-button class="news__plus-btn"><span class="plus">+</span>Создать новость</my-button>
+      </router-link>
+    </div>
     <news-list :news-list="this.getStateNews.database" @delete="deleteNews"/>
     <p class="info text-danger" v-if="this.getStateNews.deleted">Новость удалена</p>
   </div>
@@ -36,13 +38,11 @@ export default {
 </script>
 
 <style scoped>
-.news {
-  position: relative;
+.news__btn {
+  display: flex;
+  justify-content: flex-end;
 }
-.plus__btn {
-  position: absolute;
-  right: 50px;
-  top: 20px;
+.news__plus-btn {
   display: flex;
   align-items: center;
 }

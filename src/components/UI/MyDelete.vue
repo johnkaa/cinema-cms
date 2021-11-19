@@ -1,5 +1,5 @@
 <template>
-  <button class="delete"><img src="../../assets/icons/delete.png" alt=""></button>
+  <button class="delete"><span class="iconify" data-icon="ant-design:delete-outlined"></span></button>
 </template>
 
 <script>
@@ -17,9 +17,6 @@ export default {
   right: -110px;
   top: 50%;
   transform: translateY(-50%);
-}
-.delete img {
-  width: 25px;
-  height: 25px;
+  font-size: 30px;
 }
 </style>

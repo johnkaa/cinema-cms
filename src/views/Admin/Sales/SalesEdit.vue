@@ -101,8 +101,8 @@ export default {
             description: '',
             img: 'https://via.placeholder.com/400',
             gallery: {
-              999: {
-                id: 999,
+              [(+new Date()-(+new Date()%100)) / 100]: {
+                id: (+new Date()-(+new Date()%100)) / 100,
                 img: 'https://via.placeholder.com/200'
               }
             },
@@ -120,8 +120,8 @@ export default {
               description: '',
               img: 'https://via.placeholder.com/400',
               gallery: {
-                9999: {
-                  id: 9999,
+                [((+new Date()-(+new Date()%100)) / 100) + 5]: {
+                  id: ((+new Date()-(+new Date()%100)) / 100) + 5,
                   img: 'https://via.placeholder.com/200'
                 }
               },
@@ -134,6 +134,16 @@ export default {
               }
             }
           }
+          data = this.getStateSales.database[this.id]
+          this.actual = data.actual
+          this.actualValue = data.actualValue
+          this.name = data.name
+          this.description = data.description
+          this.img = data.img
+          this.gallery = data.gallery
+          this.link = data.link
+          this.seo = data.seo
+          this.uaItem = data.ua
         } else {
           this.actual = DBdata.actual
           this.actualValue = DBdata.actualValue
@@ -202,6 +212,8 @@ export default {
           seo: this.seo,
         }
       } else {
+        this.uaItem.actual = this.actual
+        this.uaItem.actualValue = this.actualValue
         this.getStateSales.database[this.id] = {
           id: this.id,
           actual: this.actual,
@@ -241,11 +253,10 @@ export default {
       }
     },
     updateGallery(gallery) {
-      this.getStateSales.database[this.id].gallery[gallery.id] = {
+      this.gallery[gallery.id] = {
         id: gallery.id,
         img: gallery.img
       }
-      this.gallery = this.getStateSales.database[this.id].gallery
     },
     deleteGalleryItem(gallery) {
       delete this.gallery[gallery.id]
