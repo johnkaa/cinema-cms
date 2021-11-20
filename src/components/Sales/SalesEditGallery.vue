@@ -16,6 +16,7 @@
 import MyCloseButton from "../UI/MyCloseButton";
 import {deleteObject, getDownloadURL, ref, uploadBytes} from "firebase/storage";
 import storage from "../../firebase/storage";
+import {mapMutations} from "vuex";
 
 export default {
   name: "SalesEditGallery",
@@ -27,11 +28,23 @@ export default {
     }
   },
   methods: {
-    async uploadFile() {
+    ...mapMutations(['updateSalesGalleryItem', 'deleteSalesGalleryItem']),
+    uploadFile() {
       const path = `sales/${this.id}/gallery/${this.gallery.id}`
       const storageRef = ref(storage, path)
-      await uploadBytes(storageRef, this.file)
-      this.img = await getDownloadURL(ref(storage, path))
+      uploadBytes(storageRef, this.file)
+    },
+    getFileUrl() {
+      const path = `sales/${this.id}/gallery/${this.gallery.id}`
+      const interval = setInterval(() => {
+        getDownloadURL(ref(storage, path))
+            .then((url) => {
+              this.img = url
+            })
+        if(this.img) {
+          clearInterval(interval)
+        }
+      }, 1000)
     },
     onPickFileGallery() {
       this.$refs.fileInputGallery.click()
@@ -44,14 +57,23 @@ export default {
       if (this.filename.indexOf(".") <= 0) {
         return alert("Please add a valid file");
       }
+      fileReader.addEventListener('load', () => {
+        this.img = fileReader.result
+      })
       fileReader.readAsDataURL(files[0])
       this.uploadFile()
+      this.addItem()
       setTimeout(() => {
-        this.$emit('update', {
+        this.$emit('create', {
           id: this.gallery.id,
           img: this.img
         })
       },1500)
+    },
+    addItem() {
+      setTimeout(() => {
+        this.getFileUrl()
+      }, 200)
     },
     deleteGalleryItem() {
       if(Object.keys(this.items).length === 1 ) {

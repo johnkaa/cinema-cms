@@ -40,7 +40,7 @@
           :gallery="item"
           :id="this.id"
           :items="this.gallery"
-          @update="updateGallery"
+          @create="updateGallery"
           @delete="deleteGalleryItem"
       />
       <my-button class="add text-success" @click="addSalesGalleryItem">+</my-button>

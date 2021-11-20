@@ -5,5 +5,4 @@ import router from './router'
 import store from './store'
 import i18n from './i18n'
 
-const app = createApp(App).use(i18n).use(VueLazyLoad).use(store).use(router).mount('#app')
-app.use(VueLazyLoad)
+createApp(App).use(i18n).use(VueLazyLoad).use(store).use(router).mount('#app')

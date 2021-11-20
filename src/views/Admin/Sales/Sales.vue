@@ -1,6 +1,6 @@
 <template>
   <div class="sales">
-    <h2 class="sales__title title">Список Акций</h2>
+    <h2 class="sales__title title">Список акций</h2>
     <div class="sales__btn">
       <router-link :to="'/admin/sales-edit/' + (+new Date()-(+new Date()%100)) / 100">
         <my-button class="sales__plus-btn plus__btn"><span class="plus">+</span>Создать акцию</my-button>

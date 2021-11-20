@@ -366,55 +366,28 @@ export default {
         description: '',
         keywords: ''
       }
-      if(this.soon) {
-        this.getStateFilmsSoon.database[this.id].ua = {
-          id: this.id,
-          title: 'Пригоди тварин',
-          description: '',
-          img: 'https://via.placeholder.com/400x400',
-          gallery: {
-            0: {
-              id: 0,
-              img: 'https://via.placeholder.com/250x250',
-            }
-          },
-          link: '',
-          type: {
-            type3D: false,
-            type2D: false,
-            typeIMAX: false
-          },
-          seo: {
-            url: '',
-            title: '',
-            description: '',
-            keywords: ''
+      this.uaItem = {
+        id: this.id,
+        title: 'Пригоди тварин',
+        description: '',
+        img: 'https://via.placeholder.com/400x400',
+        gallery: {
+          99: {
+            id: 99,
+            img: 'https://via.placeholder.com/250x250',
           }
-        }
-      } else {
-        this.getStateFilmsNow.database[this.id].ua = {
-          id: this.id,
-          title: 'Пригоди тварин',
+        },
+        link: '',
+        type: {
+          type3D: false,
+          type2D: false,
+          typeIMAX: false
+        },
+        seo: {
+          url: '',
+          title: '',
           description: '',
-          img: 'https://via.placeholder.com/400x400',
-          gallery: {
-            0: {
-              id: 0,
-              img: 'https://via.placeholder.com/250x250',
-            }
-          },
-          link: '',
-          type: {
-            type3D: false,
-            type2D: false,
-            typeIMAX: false
-          },
-          seo: {
-            url: '',
-            title: '',
-            description: '',
-            keywords: ''
-          }
+          keywords: ''
         }
       }
       this.deleteFileFilmImg({
