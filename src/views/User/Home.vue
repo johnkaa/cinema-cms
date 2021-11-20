@@ -143,10 +143,13 @@ export default {
 }
 .films__items {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
   max-width: 90%;
   margin: 0 auto;
+}
+.films__item + .films__item {
+  margin-left: 20px;
 }
 .films__name {
   font-size: 20px;

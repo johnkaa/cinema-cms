@@ -38,7 +38,7 @@ export default {
 .schedule-films__items {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
 }
 .schedule-films__item {
@@ -51,6 +51,9 @@ export default {
     text-align: center;
     font-weight: 600;
     margin-top: 5px;
+  }
+  & + & {
+    margin-left: 20px;
   }
 }
 </style>

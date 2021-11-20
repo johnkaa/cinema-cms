@@ -1,6 +1,6 @@
 <template>
   <div class="halls-page">
-    <img class="halls-page__img" v-lazy="{ src: img, loading: 'https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=ecf05e47on66p48qsf04xv9no0it5htgx7uzbpa4wx0kd1zg&rid=giphy.gif&ct=g'}" alt="">
+    <img class="halls-page__img" :src="img" alt="">
     <div class="halls-page__inner">
       <div class="halls-page__sidebar">
         <div class="halls-page__sessions">

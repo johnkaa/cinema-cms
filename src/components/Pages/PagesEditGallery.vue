@@ -43,10 +43,10 @@ export default {
                 this.img = url
               }
             })
-        if(this.img) {
+        if(this.img !== 'https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=ecf05e47on66p48qsf04xv9no0it5htgx7uzbpa4wx0kd1zg&rid=giphy.gif&ct=g') {
           clearInterval(interval)
         }
-      }, 1000)
+      }, 250)
     },
     onPickFileGallery() {
       this.$refs.fileInputGallery.click()
@@ -70,6 +70,7 @@ export default {
           id: this.gallery.id,
           img: this.img
         })
+        console.log(this.img)
       },1500)
     },
     deleteGalleryItem() {

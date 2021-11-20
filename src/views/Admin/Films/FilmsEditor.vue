@@ -88,7 +88,7 @@
     </div>
     <div class="films-editor__btns">
       <my-button class="films-editor__btns-btn" @click="submit">Сохранить</my-button>
-      <my-button class="films-editor__btns-btn" @click="returnBaseVersion">Вернуть базовую версию</my-button>
+      <my-button class="films-editor__btns-btn" @click="back">Назад</my-button>
     </div>
     <p class="info text-success" v-if="this.uploaded">Изменения сохранены</p>
   </div>
@@ -98,7 +98,7 @@
 import MyButton from "../../../components/UI/MyButton";
 import FilmsEditorGallery from "../../../components/Films/FilmsEditorGallery";
 import {mapGetters, mapMutations} from "vuex";
-import {onValue, ref, set} from "firebase/database";
+import {ref, set} from "firebase/database";
 import db from "../../../firebase/database";
 
 export default {
@@ -111,51 +111,117 @@ export default {
       this.soon = true
       const data = this.getStateFilmsSoon.database[this.id]
       if(!data) {
-        const filmsSoonRef = ref(db, `films/filmsSoon/${this.id}`)
-        return onValue(filmsSoonRef, (snapshot) => {
-          const DBdata = snapshot.val()
-          this.title = DBdata.title
-          this.description = DBdata.description
-          this.img = DBdata.img
-          this.gallery = DBdata.gallery
-          this.link = DBdata.link
-          this.type = DBdata.type
-          this.seo = DBdata.seo
-          this.uaItem = DBdata.ua
-        })
+        this.title = 'Фильм'
+        this.description = ''
+        this.img = 'https://via.placeholder.com/400'
+        this.gallery = {
+          999: {
+            id: '999',
+            img: 'https://via.placeholder.com/200',
+          }
+        }
+        this.link = ''
+        this.type = {
+          type2D: false,
+          type3D: false,
+          typeIMAX: false,
+        }
+        this.seo = {
+          title: '',
+          description: '',
+          keywords: '',
+          url: '',
+        }
+        this.uaItem = {
+          title: 'Фiльм',
+          description: '',
+          img: 'https://via.placeholder.com/400',
+          gallery: {
+            9999: {
+              id: '9999',
+              img: 'https://via.placeholder.com/200',
+            }
+          },
+          link: '',
+          type: {
+            type2D: false,
+            type3D: false,
+            typeIMAX: false,
+          },
+          seo: {
+            title: '',
+            description: '',
+            keywords: '',
+            url: '',
+          },
+        }
+      } else {
+        this.title = data.title
+        this.description = data.description
+        this.img = data.img
+        this.gallery = data.gallery
+        this.link = data.link
+        this.type = data.type
+        this.seo = data.seo
+        this.uaItem = data.ua
       }
-      this.title = data.title
-      this.description = data.description
-      this.img = data.img
-      this.gallery = data.gallery
-      this.link = data.link
-      this.type = data.type
-      this.seo = data.seo
-      this.uaItem = data.ua
     } else {
       const data = this.getStateFilmsNow.database[this.id]
       if(!data) {
-        const filmsNowRef = ref(db, `films/filmsNow/${this.id}`)
-        return onValue(filmsNowRef, (snapshot) => {
-          const DBdata = snapshot.val()
-          this.title = DBdata.title
-          this.description = DBdata.description
-          this.img = DBdata.img
-          this.gallery = DBdata.gallery
-          this.link = DBdata.link
-          this.type = DBdata.type
-          this.seo = DBdata.seo
-          this.uaItem = DBdata.ua
-        })
+        this.title = 'Фильм'
+        this.description = ''
+        this.img = 'https://via.placeholder.com/400'
+        this.gallery = {
+          999: {
+            id: '999',
+            img: 'https://via.placeholder.com/200',
+          }
+        }
+        this.link = ''
+        this.type = {
+          type2D: false,
+          type3D: false,
+          typeIMAX: false,
+        }
+        this.seo = {
+          title: '',
+          description: '',
+          keywords: '',
+          url: '',
+        }
+        this.uaItem = {
+          title: 'Фiльм',
+          description: '',
+          img: 'https://via.placeholder.com/400',
+          gallery: {
+            9999: {
+              id: '9999',
+              img: 'https://via.placeholder.com/200',
+            }
+          },
+          link: '',
+          type: {
+            type2D: false,
+            type3D: false,
+            typeIMAX: false,
+          },
+          seo: {
+            title: '',
+            description: '',
+            keywords: '',
+            url: '',
+          },
+        }
+      } else {
+        this.title = data.title
+        this.description = data.description
+        this.img = data.img
+        this.gallery = data.gallery
+        this.link = data.link
+        this.type = data.type
+        this.seo = data.seo
+        this.uaItem = data.ua
       }
-      this.title = data.title
-      this.description = data.description
-      this.img = data.img
-      this.gallery = data.gallery
-      this.link = data.link
-      this.type = data.type
-      this.seo = data.seo
-      this.uaItem = data.ua
     }
   },
   props: ['path', 'id'],
@@ -336,56 +402,9 @@ export default {
         id: this.id,
       })
     },
-    returnBaseVersion() {
-      this.title = 'Приключения животных'
-      this.description = ''
-      this.img = 'https://via.placeholder.com/400x400'
-      this.gallery = {
-        0: {
-          id: 0,
-          img: 'https://via.placeholder.com/250x250',
-        }
-      }
-      this.link = ''
-      this.type = {
-        type3D: false,
-        type2D: false,
-        typeIMAX: false
-      }
-      this.seo = {
-        url: '',
-        title: '',
-        description: '',
-        keywords: ''
-      }
-      this.uaItem = {
-        id: this.id,
-        title: 'Пригоди тварин',
-        description: '',
-        img: 'https://via.placeholder.com/400x400',
-        gallery: {
-          99: {
-            id: 99,
-            img: 'https://via.placeholder.com/250x250',
-          }
-        },
-        link: '',
-        type: {
-          type3D: false,
-          type2D: false,
-          typeIMAX: false
-        },
-        seo: {
-          url: '',
-          title: '',
-          description: '',
-          keywords: ''
-        }
-      }
-      this.deleteFileFilmImg({
-        path: this.fullPath,
-        id: this.id,
-        ua: this.ua
+    back() {
+      this.$router.push({
+        path: '/admin/films'
       })
     },
     setLanguage() {
