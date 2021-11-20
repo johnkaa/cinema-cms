@@ -52,10 +52,17 @@
           :path="this.path"
           :id="this.id"
           :items="this.gallery"
+          ref="gallery"
           @create="updateGallery"
           @delete="deleteGalleryItem"
       />
-      <my-button class="add text-success" @click="addHallGalleryItem">+</my-button>
+      <my-button class="add text-success" @click="addHallsGalleryItem">+</my-button>
+      <input class="add-gallery-item"
+             type="file"
+             style="display: none;"
+             ref="fileInputGallery"
+             accept="image/*"
+             @change="addCinemasHallsGalleryItemPicked" />
     </div>
     <div class="cinemas-edit-halls__seo">
       <span>SEO блок:</span>
@@ -324,17 +331,24 @@ export default {
         id: this.id,
       })
     },
-    addHallGalleryItem() {
-      let date = (+new Date()-(+new Date()%100)) / 100
-      if(this.gallery) {
-        if(Object.keys(this.gallery).length > 4 ) {
-          return alert('Больше добавить нельзя')
-        }
+    addHallsGalleryItem() {
+      if(Object.keys(this.gallery).length > 4 ) {
+        return alert('Больше добавить нельзя')
       }
+      this.$refs.fileInputGallery.click()
+    },
+    addCinemasHallsGalleryItemPicked(event) {
+      if(Object.keys(event.target.files).length === 0) {
+        return
+      }
+      const date = (+new Date()-(+new Date()%100)) / 100
       this.gallery[date] = {
         id: date,
-        img: 'https://via.placeholder.com/200',
+        img: 'https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=ecf05e47on66p48qsf04xv9no0it5htgx7uzbpa4wx0kd1zg&rid=giphy.gif&ct=g'
       }
+      setTimeout(() => {
+        this.$refs.gallery.onFilePickedGallery(event)
+      }, 200)
     },
     updateGallery(gallery) {
       if(this.ua) {

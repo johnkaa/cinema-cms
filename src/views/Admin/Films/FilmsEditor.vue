@@ -38,10 +38,17 @@
           :path="this.path"
           :pathID="this.id"
           :items="this.gallery"
+          ref="gallery"
           @create="updateGallery"
           @delete="deleteGalleryItem"
       />
       <my-button class="add text-success" @click="addFilmGalleryItem">+</my-button>
+      <input class="add-gallery-item"
+             type="file"
+             style="display: none;"
+             ref="fileInputGallery"
+             accept="image/*"
+             @change="addFilmGalleryItemPicked" />
     </div>
     <div class="films-editor__link">
       <span>Ссылка на трейлер</span>
@@ -158,6 +165,7 @@ export default {
       description: '',
       img: '',
       gallery: {},
+      addGalleryImg: '',
       link: '',
       type: {},
       seo: {},
@@ -285,41 +293,25 @@ export default {
       }, 1500)
     },
     addFilmGalleryItem() {
-      let date = (+new Date()-(+new Date()%100)) / 100
       if(Object.keys(this.gallery).length > 4 ) {
         return alert('Больше добавить нельзя')
       }
+      this.$refs.fileInputGallery.click()
+    },
+    addFilmGalleryItemPicked(event) {
+      if(Object.keys(event.target.files).length === 0) {
+        return
+      }
+      const date = (+new Date()-(+new Date()%100)) / 100
       this.gallery[date] = {
         id: date,
-        img: 'https://via.placeholder.com/200',
+        img: 'https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=ecf05e47on66p48qsf04xv9no0it5htgx7uzbpa4wx0kd1zg&rid=giphy.gif&ct=g'
       }
+      setTimeout(() => {
+        this.$refs.gallery.onFilePickedGallery(event)
+      }, 200)
     },
     updateGallery(gallery) {
-      if(this.ua) {
-        if (this.soon) {
-          this.getStateFilmsSoon.database[this.id].ua.gallery[gallery.id] = {
-            id: gallery.id,
-            img: gallery.img
-          }
-        } else {
-          this.getStateFilmsNow.database[this.id].ua.gallery[gallery.id] = {
-            id: gallery.id,
-            img: gallery.img
-          }
-        }
-      } else {
-        if (this.soon) {
-          this.getStateFilmsSoon.database[this.id].gallery[gallery.id] = {
-            id: gallery.id,
-            img: gallery.img
-          }
-        } else {
-          this.getStateFilmsNow.database[this.id].gallery[gallery.id] = {
-            id: gallery.id,
-            img: gallery.img
-          }
-        }
-      }
       this.gallery[gallery.id] = {
         id: gallery.id,
         img: gallery.img

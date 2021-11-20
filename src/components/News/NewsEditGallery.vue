@@ -36,15 +36,17 @@ export default {
     },
     getFileUrl() {
       const path = `news/${this.id}/gallery/${this.gallery.id}`
-      const interval = setInterval(() => {
-        getDownloadURL(ref(storage, path))
+      const interval = setInterval(async () => {
+        await getDownloadURL(ref(storage, path))
             .then((url) => {
-              this.img = url
+              if(url) {
+                this.img = url
+              }
             })
         if(this.img) {
           clearInterval(interval)
         }
-      }, 1000)
+      }, 250)
     },
     onPickFileGallery() {
       this.$refs.fileInputGallery.click()
@@ -57,23 +59,18 @@ export default {
       if (this.filename.indexOf(".") <= 0) {
         return alert("Please add a valid file");
       }
-      fileReader.addEventListener('load', () => {
-        this.img = fileReader.result
-      })
       fileReader.readAsDataURL(files[0])
+      this.img = 'https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=ecf05e47on66p48qsf04xv9no0it5htgx7uzbpa4wx0kd1zg&rid=giphy.gif&ct=g'
       this.uploadFile()
-      this.addItem()
+      setTimeout(() => {
+        this.getFileUrl()
+      }, 200)
       setTimeout(() => {
         this.$emit('create', {
           id: this.gallery.id,
           img: this.img
         })
       },1500)
-    },
-    addItem() {
-      setTimeout(() => {
-        this.getFileUrl()
-      }, 200)
     },
     deleteGalleryItem() {
       if(Object.keys(this.items).length === 1 ) {
