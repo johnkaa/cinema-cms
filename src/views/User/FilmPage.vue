@@ -41,7 +41,7 @@ import {onValue, ref} from "firebase/database";
 import db from "../../firebase/database";
 import MyButton from "../../components/UI/MyButton";
 import GalleryCarousel from "../../components/GalleryCarousel";
-import {mapGetters} from "vuex";
+import {mapGetters, mapMutations} from "vuex";
 
 export default {
   name: "FilmPage",
@@ -82,13 +82,18 @@ export default {
   },
   mounted() {
     this.setupFilm()
+    this.readCinemasData()
   },
   watch: {
     '$i18n.locale'() {
       this.setupFilm()
+    },
+    cinemas() {
+      this.setupFilm()
     }
   },
   methods: {
+    ...mapMutations(['readCinemasData']),
     async setupFilm() {
       const actual = this.actual[0].toUpperCase() + this.actual.slice(1)
       if(this.$i18n.locale === 'ua') {
