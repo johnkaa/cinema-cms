@@ -5,10 +5,10 @@
         <h4 class="apps__title">{{ $t('footer.mobile') }}</h4>
         <div class="apps__items">
           <div class="apps__item">
-            <a href=""><img src="../assets/icons/gplay.webp" alt="" width="200px" height="60px"></a>
+            <a href=""><span class="iconify" data-icon="flat-ui:google"></span></a>
           </div>
           <div class="apps__item">
-            <a href=""><img src="../assets/icons/app-store.webp" alt="" width="200px" height="60px"></a>
+            <a href=""><span class="iconify" data-icon="flat-ui:app-store"></span></a>
           </div>
         </div>
       </div>
@@ -105,11 +105,10 @@ export default {
 }
 .apps__items {
   display: flex;
+  font-size: 80px;
 }
-.apps__item img {
-  width: 200px;
-  height: 60px;
-  object-fit: fill;
+.apps__item + .apps__item {
+  margin-left: 30px;
 }
 .footer__list {
   li:nth-child(1) {
