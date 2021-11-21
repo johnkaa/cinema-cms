@@ -10,19 +10,17 @@
     <td>{{ user.nickname }}</td>
     <td>{{ user.city }}</td>
     <router-link v-if="!select" :to="'/admin/users-edit/' + user.id"><my-edit /></router-link>
-    <my-delete v-if="!select" @click="deleteUsers"/>
   </tr>
 </template>
 
 <script>
-import MyEdit from "../UI/MyEdit";
-import MyDelete from "../UI/MyDelete";
 import {onValue, ref} from "firebase/database";
 import db from "../../firebase/database";
+import MyEdit from "@/components/UI/MyEdit";
 
 export default {
   name: "UsersListItem",
-  components: {MyDelete, MyEdit},
+  components: {MyEdit},
   props: ['user', 'items', 'select'],
   mounted() {
     const usersRef = ref(db, `mailing/selectedUsers/${this.user.id}/selected`)
@@ -36,12 +34,6 @@ export default {
     }
   },
   methods: {
-    deleteUsers() {
-      if(Object.keys(this.items).length === 1 ) {
-        return alert('Должен быть хотя бы 1 пользователь')
-      }
-      this.$emit('delete', this.user.id)
-    },
     setSelectedUsers() {
       this.$emit('setSelectedUsers', {
         user: this.user.id,

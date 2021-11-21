@@ -2,13 +2,13 @@
   <div class="users">
     <h2 class="users__title title">Пользователи</h2>
     <form class="search" @submit.prevent><input type="text" placeholder="Введите имя пользователя" v-model="search"></form>
-    <users-list :users-list="usersByName" @delete="deleteUsers"/>
+    <users-list :users-list="usersByName" />
   </div>
 </template>
 
 <script>
 import UsersList from "../../../components/Users/UsersList";
-import {mapGetters, mapMutations} from "vuex";
+import {mapGetters} from "vuex";
 
 export default {
   name: "Users",
@@ -26,12 +26,6 @@ export default {
       search: '',
     }
   },
-  methods: {
-    ...mapMutations(['deleteUsersItem']),
-    deleteUsers(id) {
-      this.deleteUsersItem(id)
-    },
-  }
 }
 </script>
 
