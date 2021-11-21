@@ -36,6 +36,9 @@ export default {
   watch: {
     '$i18n.locale'() {
       this.setupSearchItems()
+    },
+    '$route.query.searchField'() {
+      this.setupSearchItems()
     }
   },
   data() {
