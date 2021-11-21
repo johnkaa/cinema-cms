@@ -24,7 +24,7 @@
     </div>
     <div class="films__soon info text-success" v-else>Скоро появится в прокате</div>
     <div class="film__inner">
-      <img class="film__img" v-lazy="{ src: img, loading: 'https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=ecf05e47on66p48qsf04xv9no0it5htgx7uzbpa4wx0kd1zg&rid=giphy.gif&ct=g'}" alt="">
+      <img class="film__img" :src="img" alt="">
       <div class="film__info">
         <my-button class="film__btn" v-if="!soon">{{ $t('film.buy') }}</my-button>
         <h4 class="film__title">{{ name }}</h4>

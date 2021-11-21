@@ -6,7 +6,7 @@
         <div class="contacts__item-inner">
           <div class="contacts__item-main">
             <div class="contacts__item-title">{{ item.name }}</div>
-            <div class="contacts__item-img"><img v-lazy="{ src: item.img, loading: 'https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=ecf05e47on66p48qsf04xv9no0it5htgx7uzbpa4wx0kd1zg&rid=giphy.gif&ct=g'}" alt=""></div>
+            <div class="contacts__item-img"><img :src="item.img" alt=""></div>
           </div>
           <div class="contacts__item-info">
             <div class="contacts__item-address">{{ item.address }}</div>

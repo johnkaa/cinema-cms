@@ -15,7 +15,7 @@
         <h3 class="halls-page__title">{{name}}</h3>
         <p class="halls-page__desc">{{desc}}</p>
         <h5 class="halls-page__scheme-title">Карта зала</h5>
-        <img class="halls-page__scheme-img" v-lazy="{ src: scheme, loading: 'https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=ecf05e47on66p48qsf04xv9no0it5htgx7uzbpa4wx0kd1zg&rid=giphy.gif&ct=g'}" alt="">
+        <img class="halls-page__scheme-img" :src="scheme" alt="">
         <gallery-carousel class="halls-page__gallery" :slider="gallery"/>
       </div>
     </div>

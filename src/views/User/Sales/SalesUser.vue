@@ -4,7 +4,7 @@
     <div class="sales__items">
       <div class="sales__item" v-for="item in sales" :key="item.id">
         <router-link class="sales__item__inner" v-if="item.actual" :to="'/sales/' + item.id">
-          <img class="sales__item-img" v-lazy="{ src: item.img, loading: 'https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=ecf05e47on66p48qsf04xv9no0it5htgx7uzbpa4wx0kd1zg&rid=giphy.gif&ct=g'}" alt="">
+          <img class="sales__item-img" :src="item.img" alt="">
           <div class="sales__item-title">{{ item.name }}</div>
           <div class="sales__item-date">{{ item.date }}</div>
           <div class="sales__item-desc">{{ item.description }}</div>

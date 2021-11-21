@@ -3,7 +3,7 @@
     <h4 class="sales-page__title">{{ name }}</h4>
     <div class="sales-page__inner">
       <div class="sales-page__img">
-        <img v-lazy="{ src: img, loading: 'https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=ecf05e47on66p48qsf04xv9no0it5htgx7uzbpa4wx0kd1zg&rid=giphy.gif&ct=g'}" alt="">
+        <img :src="img" alt="">
       </div>
       <div class="sales-page__info">{{ desc }}</div>
     </div>

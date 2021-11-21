@@ -4,7 +4,7 @@ await <template>
     <div class="cinemas__items">
       <div class="cinemas__item" v-for="item in cinemas" :key="item.id">
         <router-link :to="'/cinemas/' + item.id">
-          <img v-lazy="{ src: item.img, loading: 'https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=ecf05e47on66p48qsf04xv9no0it5htgx7uzbpa4wx0kd1zg&rid=giphy.gif&ct=g'}" alt="">
+          <img :src="item.img" alt="">
           <p class="cinemas__name">{{ item.title }}</p>
         </router-link>
       </div>

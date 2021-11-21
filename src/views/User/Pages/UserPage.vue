@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <img class="page__img" v-lazy="{ src: page.img, loading: 'https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=ecf05e47on66p48qsf04xv9no0it5htgx7uzbpa4wx0kd1zg&rid=giphy.gif&ct=g'}" alt="">
+    <img class="page__img" :src="page.img" alt="">
     <div class="page__inner">
       <div class="page__block">
         <h4 class="page__title">{{ page.name }}</h4>
