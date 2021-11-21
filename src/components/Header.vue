@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-    <router-link class="logo" to="/"><img class="logo__img" src="../assets/logo.webp" alt=""></router-link>
+    <router-link class="logo" to="/"><span class="logo__icon iconify" data-icon="emojione-monotone:cinema" style="color: #42b983;"></span></router-link>
     <div class="header__btns" v-if="this.getStateAuth.auth">
       <router-link to="/" @click="logout">
         <a class="header__quit" href="/"><span class="iconify" data-icon="ls:logout"></span></a>
@@ -42,11 +42,11 @@ export default {
     align-items: center;
     justify-content: space-between;
     margin-bottom: 20px;
-    padding: 0 30px;
+    padding: 10px 30px;
     border-bottom: 3px solid #42b983;
   }
-  .logo__img {
-    width: 80px;
+  .logo__icon {
+    font-size: 80px;
   }
   .header__btns {
     display: flex;

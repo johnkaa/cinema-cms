@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <div class="header__top">
-      <router-link class="logo" to="/"><img class="logo__img" src="../assets/logo.webp" alt="" width="80px"></router-link>
+      <router-link class="logo" to="/"><span class="logo__icon iconify" data-icon="emojione-monotone:cinema" style="color: #42b983;"></span></router-link>
       <form class="header__search" @submit.prevent>
         <input type="text" :placeholder="$t('header.search')" v-model="searchField">
         <my-button class="header__search-btn" @click="search">
@@ -140,7 +140,7 @@ export default {
 <style lang="scss" scoped>
 .header {
   margin-bottom: 20px;
-  padding: 0 30px;
+  padding: 10px 30px;
   border-bottom: 3px solid #42b983;
 }
 .header__top {
@@ -148,8 +148,8 @@ export default {
   align-items: center;
   justify-content: space-between;
 }
-.logo__img {
-  width: 80px;
+.logo__icon {
+  font-size: 80px;
 }
 .header__search {
   display: block;
