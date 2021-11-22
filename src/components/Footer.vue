@@ -5,10 +5,10 @@
         <h4 class="apps__title">{{ $t('footer.mobile') }}</h4>
         <div class="apps__items">
           <div class="apps__item">
-            <a href=""><span class="iconify" data-icon="flat-ui:google"></span></a>
+            <a href="#"><span class="iconify" data-icon="flat-ui:google"></span></a>
           </div>
           <div class="apps__item">
-            <a href=""><span class="iconify" data-icon="flat-ui:app-store"></span></a>
+            <a href="#"><span class="iconify" data-icon="flat-ui:app-store"></span></a>
           </div>
         </div>
       </div>
