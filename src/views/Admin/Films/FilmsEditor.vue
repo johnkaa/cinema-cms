@@ -336,27 +336,29 @@ export default {
       this.getStateFilmsEditor.img = ''
       this.getStateFilmsEditor.imgUa = ''
       this.img = 'https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=ecf05e47on66p48qsf04xv9no0it5htgx7uzbpa4wx0kd1zg&rid=giphy.gif&ct=g'
-      const interval = setInterval(() => {
-        this.getFileFilmUrl({
-          path: this.fullPath,
-          id: this.id,
-          ua: this.ua
-        })
-        if(this.getStateFilmsEditor.img) {
-          clearInterval(interval)
-        }
-        if(this.ua) {
-          if(this.getStateFilmsEditor.imgUa) {
+      setTimeout(() => {
+        const interval = setInterval(() => {
+          this.getFileFilmUrl({
+            path: this.fullPath,
+            id: this.id,
+            ua: this.ua
+          })
+          if(this.getStateFilmsEditor.img) {
             clearInterval(interval)
           }
-        }
-      }, 250)
+          if(this.ua) {
+            if(this.getStateFilmsEditor.imgUa) {
+              clearInterval(interval)
+            }
+          }
+        }, 250)
+      }, 1000)
       setTimeout(() => {
         this.img = this.getStateFilmsEditor.img
         if(this.ua) {
           this.img = this.getStateFilmsEditor.imgUa
         }
-      }, 1500)
+      }, 2000)
     },
     addFilmGalleryItem() {
       if(Object.keys(this.gallery).length > 4 ) {

@@ -277,27 +277,29 @@ export default {
       this.getStateNewsEdit.img = ''
       this.getStateNewsEdit.imgUa = ''
       this.img = 'https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=ecf05e47on66p48qsf04xv9no0it5htgx7uzbpa4wx0kd1zg&rid=giphy.gif&ct=g'
-      const interval = setInterval(() => {
-        this.getDownloadNewsURL({
-          id: this.id,
-          ua: this.ua
-        })
-        if(this.getStateNewsEdit.img) {
-          clearInterval(interval)
-        }
-        if(this.ua) {
-          if(this.getStateNewsEdit.imgUa) {
+      setTimeout(() => {
+        const interval = setInterval(() => {
+          this.getDownloadNewsURL({
+            id: this.id,
+            ua: this.ua
+          })
+          if(this.getStateNewsEdit.img) {
             clearInterval(interval)
           }
-        }
-      }, 250)
+          if(this.ua) {
+            if(this.getStateNewsEdit.imgUa) {
+              clearInterval(interval)
+            }
+          }
+        }, 250)
+      }, 1000)
       setTimeout(() => {
         if(this.ua) {
           this.img = this.getStateNewsEdit.imgUa
         } else {
           this.img = this.getStateNewsEdit.img
         }
-      }, 1500)
+      }, 2000)
     },
     addNewsGalleryItem() {
       if(Object.keys(this.gallery).length > 4 ) {

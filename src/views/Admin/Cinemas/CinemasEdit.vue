@@ -374,27 +374,29 @@ export default {
       this.getStateCinemasEdit.mainImgUrl = ''
       this.getStateCinemasEdit.mainImgUrlUa = ''
       this.img = 'https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=ecf05e47on66p48qsf04xv9no0it5htgx7uzbpa4wx0kd1zg&rid=giphy.gif&ct=g'
-      const interval = setInterval(() => {
-        this.getDownloadCinemaURL({
-          id: this.id,
-          ua: this.ua
-        })
-        if(this.getStateCinemasEdit.mainImgUrl) {
-          clearInterval(interval)
-        }
-        if(this.ua) {
-          if(this.getStateCinemasEdit.mainImgUrlUa) {
+      setTimeout(() => {
+        const interval = setInterval(() => {
+          this.getDownloadCinemaURL({
+            id: this.id,
+            ua: this.ua
+          })
+          if(this.getStateCinemasEdit.mainImgUrl) {
             clearInterval(interval)
           }
-        }
-      }, 250)
+          if(this.ua) {
+            if(this.getStateCinemasEdit.mainImgUrlUa) {
+              clearInterval(interval)
+            }
+          }
+        }, 250)
+      }, 1000)
       setTimeout(() => {
         if(this.ua) {
           this.img = this.getStateCinemasEdit.mainImgUrlUa
         } else {
           this.img = this.getStateCinemasEdit.mainImgUrl
         }
-      }, 1500)
+      }, 2000)
     },
     onPickFileLogo() {
       this.$refs.fileInput1.click()

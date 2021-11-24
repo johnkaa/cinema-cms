@@ -248,29 +248,31 @@ export default {
       this.getStateHallsEdit.hallImg = ''
       this.getStateHallsEdit.hallImgUa = ''
       this.img = 'https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=ecf05e47on66p48qsf04xv9no0it5htgx7uzbpa4wx0kd1zg&rid=giphy.gif&ct=g'
-      const interval = setInterval(() => {
-        this.getDownloadHallURL({
-          path: this.path,
-          id: this.id,
-          file: this.file,
-          ua: this.ua
-        })
-        if(this.getStateHallsEdit.hallImg) {
-          clearInterval(interval)
-        }
-        if(this.ua) {
-          if(this.getStateHallsEdit.hallImgUa) {
+      setTimeout(() => {
+        const interval = setInterval(() => {
+          this.getDownloadHallURL({
+            path: this.path,
+            id: this.id,
+            file: this.file,
+            ua: this.ua
+          })
+          if(this.getStateHallsEdit.hallImg) {
             clearInterval(interval)
           }
-        }
-      }, 250)
+          if(this.ua) {
+            if(this.getStateHallsEdit.hallImgUa) {
+              clearInterval(interval)
+            }
+          }
+        }, 250)
+      }, 1000)
       setTimeout(() => {
         if(this.ua) {
           this.img = this.getStateHallsEdit.hallImgUa
         } else {
           this.img = this.getStateHallsEdit.hallImg
         }
-      }, 1500)
+      }, 2000)
     },
     onPickFileScheme() {
       this.$refs.fileInput1.click()

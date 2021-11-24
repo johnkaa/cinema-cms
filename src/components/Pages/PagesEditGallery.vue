@@ -64,14 +64,14 @@ export default {
       this.uploadFile()
       setTimeout(() => {
         this.getFileUrl()
-      }, 200)
+      }, 1000)
       setTimeout(() => {
         this.$emit('create', {
           id: this.gallery.id,
           img: this.img
         })
         console.log(this.img)
-      },1500)
+      },2000)
     },
     deleteGalleryItem() {
       if(Object.keys(this.items).length === 1 ) {

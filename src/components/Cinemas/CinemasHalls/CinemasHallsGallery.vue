@@ -62,13 +62,15 @@ export default {
       fileReader.readAsDataURL(files[0])
       this.img = 'https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=ecf05e47on66p48qsf04xv9no0it5htgx7uzbpa4wx0kd1zg&rid=giphy.gif&ct=g'
       this.uploadFile()
-      this.getFileUrl()
+      setTimeout(() => {
+        this.getFileUrl()
+      }, 1000)
       setTimeout(() => {
         this.$emit('create', {
           id: this.gallery.id,
           img: this.img
         })
-      },1500)
+      },2000)
     },
     deleteGalleryItem() {
       if(Object.keys(this.items).length === 1 ) {

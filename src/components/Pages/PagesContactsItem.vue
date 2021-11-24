@@ -93,20 +93,22 @@ export default {
       this.getStatePagesContactsEdit.img = ''
       this.getStatePagesContactsEdit.imgUa = ''
       this.img = 'https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=ecf05e47on66p48qsf04xv9no0it5htgx7uzbpa4wx0kd1zg&rid=giphy.gif&ct=g'
-      const interval = setInterval(() => {
-        this.getFileUrlContacts({
-          id: this.contact.id,
-          ua: this.ua
-        })
-        if(this.getStatePagesContactsEdit.img) {
-          clearInterval(interval)
-        }
-        if(this.ua) {
-          if(this.getStatePagesContactsEdit.imgUa) {
+      setTimeout(() => {
+        const interval = setInterval(() => {
+          this.getFileUrlContacts({
+            id: this.contact.id,
+            ua: this.ua
+          })
+          if(this.getStatePagesContactsEdit.img) {
             clearInterval(interval)
           }
-        }
-      }, 250)
+          if(this.ua) {
+            if(this.getStatePagesContactsEdit.imgUa) {
+              clearInterval(interval)
+            }
+          }
+        }, 250)
+      }, 1000)
       setTimeout(() => {
         if(this.ua) {
           this.img = this.getStatePagesContactsEdit.imgUa
@@ -114,7 +116,7 @@ export default {
           this.img = this.getStatePagesContactsEdit.img
         }
         this.updateContactsItem()
-      }, 1500)
+      }, 2000)
     },
     deleteItem() {
       if(Object.keys(this.items).length === 1 ) {
