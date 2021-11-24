@@ -418,27 +418,30 @@ export default {
       this.getStateCinemasEdit.logoUrl = ''
       this.getStateCinemasEdit.logoUrlUa = ''
       this.logo = 'https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=ecf05e47on66p48qsf04xv9no0it5htgx7uzbpa4wx0kd1zg&rid=giphy.gif&ct=g'
-      const interval = setInterval(() => {
-        this.getDownloadCinemaLogoURL({
-          id: this.id,
-          ua: this.ua
-        })
-        if(this.getStateCinemasEdit.logoUrl) {
-          clearInterval(interval)
-        }
-        if(this.ua) {
-          if(this.getStateCinemasEdit.logoUrlUa) {
+      setTimeout(() => {
+        const interval = setInterval(() => {
+          this.getDownloadCinemaLogoURL({
+            id: this.id,
+            ua: this.ua
+          })
+          if(this.getStateCinemasEdit.logoUrl) {
             clearInterval(interval)
           }
-        }
-      }, 250)
+          if(this.ua) {
+            if(this.getStateCinemasEdit.logoUrlUa) {
+              clearInterval(interval)
+            }
+          }
+        }, 250)
+      }, 1000)
+
       setTimeout(() => {
         if(this.ua) {
           this.logo = this.getStateCinemasEdit.logoUrlUa
         } else {
           this.logo = this.getStateCinemasEdit.logoUrl
         }
-      }, 1500)
+      }, 2000)
     },
     deleteLogo() {
       this.logo = 'https://via.placeholder.com/200'

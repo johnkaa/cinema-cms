@@ -53,12 +53,10 @@ export default {
         this.img = fileReader.result
       })
       fileReader.readAsDataURL(files[0])
-      setTimeout(() => {
-        this.$emit('createLogo', {
-          img: this.img,
-          file: this.file
-        })
-      }, 1000)
+      this.$emit('createLogo', {
+        img: this.img,
+        file: this.file
+      })
     },
     deleteLogo() {
       this.$emit('deleteLogo')
