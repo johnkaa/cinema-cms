@@ -11,8 +11,8 @@
           <router-link :to="'/films/now/' + item.id">
             <img :src="item.img" alt="" width="400px" height="400px">
             <p class="films-now__name films__name">{{ item.title }}</p>
+            <my-button class="films-now__btn">{{ $t('home.buy') }}</my-button>
           </router-link>
-          <my-button class="films-now__btn">{{ $t('home.buy') }}</my-button>
         </div>
       </div>
     </div>

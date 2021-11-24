@@ -10,8 +10,8 @@
       <router-link :to="'/films/soon/' + item.id">
         <img :src="item.img" alt="">
         <p class="poster-soon__name poster-films__name">{{ item.title }}</p>
+        <my-button class="poster-soon__btn poster-films__btn">{{ $t('poster.buy') }}</my-button>
       </router-link>
-      <my-button class="poster-soon__btn poster-films__btn">{{ $t('poster.buy') }}</my-button>
     </div>
   </div>
 </template>
