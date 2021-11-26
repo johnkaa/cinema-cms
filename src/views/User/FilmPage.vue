@@ -11,7 +11,8 @@
       </div>
       <div class="film__schedule-items">
         <div class="film__schedule-item" v-for="item in filteredItems" :key="item.id" @click="routeFilm(item.id)">
-          <div class="film__schedule-item-date">{{ item.numberOfDay }} {{ item.month }}</div>
+          <div v-if="$i18n.locale === 'ua'" class="film__schedule-item-date">{{ item.numberOfDay }} {{ monthsUA[(item.date.split('.')[1]) - 1] }}</div>
+          <div v-else class="film__schedule-item-date">{{ item.numberOfDay }} {{ months[(item.date.split('.')[1]) - 1] }}</div>
           <div class="film__schedule-item-day">{{ item.day }}</div>
           <div class="film__schedule-item-cinema">{{ $t('film.cinema') }} {{ item.cinema }}</div>
           <div class="film__schedule-item-bottom">

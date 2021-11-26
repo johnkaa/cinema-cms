@@ -154,23 +154,23 @@ export default {
     },
     submitOrder() {
       if(this.tickets === 0) {
-        alert('Вы ещё не выбрали мест!')
-      } else {
-        alert('К оплате: ' + Number(this.sum + (this.tickets*3)) + ' грн. Выкупите билеты на кассе не раньше чем за полчаса до начала сеанса!')
+        return alert('Вы ещё не выбрали мест!')
       }
+      alert('К оплате: ' + Number(this.sum + (this.tickets*3)) + ' грн. Выкупите билеты на кассе не раньше чем за полчаса до начала сеанса!')
       set(ref(db, `orders/${this.id}`), {
         rows: this.orderItems
       })
+      this.$router.push('/')
     },
     buy() {
       if(this.tickets === 0) {
-        alert('Вы ещё не выбрали мест!')
-      } else {
-        alert('К оплате: ' + this.sum + ' грн.')
+        return alert('Вы ещё не выбрали мест!')
       }
+      alert('К оплате: ' + this.sum + ' грн.')
       set(ref(db, `orders/${this.id}`), {
         rows: this.orderItems
       })
+      this.$router.push('/')
     }
   },
 }
