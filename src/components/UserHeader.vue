@@ -107,7 +107,7 @@ export default {
         pages = snapshot.val()
       })
       Object.keys(pages).forEach((element) => {
-        if(pages[element].id === '0' ||
+        if(pages[element].id === 0 ||
             pages[element].id === '1' ||
             pages[element].id === '2') {
           delete pages[element]
