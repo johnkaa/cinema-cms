@@ -18,7 +18,7 @@
         <div><a :href="'tel:' + this.phone">+{{ phone }}</a></div>
       </div>
       <div class="header__btns" v-if="this.getStateAuth.auth">
-        <router-link class="header__admin" v-if="this.getStateAuth.currentUser.id === 4" to="/admin/stats">
+        <router-link class="header__admin" v-if="this.getStateAuth.currentUser.id === 0" to="/admin/stats">
           <my-button>Админка</my-button>
         </router-link>
         <router-link class="header__cabinet" href="/" to="/cabinet">

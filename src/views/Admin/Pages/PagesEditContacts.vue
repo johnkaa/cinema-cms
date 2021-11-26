@@ -172,6 +172,7 @@ export default {
     },
     setupPageContacts() {
       const data = this.getStatePages.database[this.id]
+      console.log(data)
       this.date = data.date
       this.contacts = data.contacts
       this.seo = data.seo

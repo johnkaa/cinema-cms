@@ -18,7 +18,7 @@
         Регистрация
       </router-link>
     </form>
-    <p class="info">Admin: qwerty@mail.ru, 123456</p>
+    <p class="info">Admin: admin@admin.admin, 123456</p>
     <p class="info text-danger" v-if="error">{{ errorMsg }}</p>
   </div>
 </template>

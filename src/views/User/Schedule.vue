@@ -195,20 +195,18 @@ export default {
     setupItems() {
       this.readCinemasData()
       this.readFilmsNowData()
-      const scheduleRef = ref(db, 'schedule')
       const nowDateArray = this.now.split('.')
+      const scheduleRef = ref(db, 'schedule')
       onValue(scheduleRef, (snapshot) => {
         Object.keys(snapshot.val()).forEach((element) => {
           const filmDateArray = snapshot.val()[element].date.split('.')
           if(nowDateArray[2] <= filmDateArray[2]) {
             if(nowDateArray[1] <= filmDateArray[1]) {
-              if(nowDateArray[0] <= filmDateArray[0]) {
-                const date =  filmDateArray[0] + ' ' + this.months[Number(filmDateArray[1]) - 1]
-                if(!this.scheduleList[date]) {
-                  this.scheduleList[date] = {}
-                }
-                this.scheduleList[date][snapshot.val()[element].id] = snapshot.val()[element]
+              const date =  filmDateArray[0] + ' ' + this.months[Number(filmDateArray[1]) - 1]
+              if(!this.scheduleList[date]) {
+                this.scheduleList[date] = {}
               }
+              this.scheduleList[date][snapshot.val()[element].id] = snapshot.val()[element]
             }
           }
         })
