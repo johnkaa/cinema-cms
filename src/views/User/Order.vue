@@ -13,9 +13,22 @@
         <div class="order__table">
           <div class="order__table-screen">{{ $t('order.screen') }}</div>
           <div class="order__table-items">
-            <div class="order__table-item" v-for="itemRow in 9" :key="itemRow">
-              <div class="order__table-row">Ряд {{ itemRow }}</div>
-              <div class="order__table-column" v-for="itemColumn in 13" :key="itemColumn" @click="order(itemRow, itemColumn)">{{ itemColumn }}</div>
+            <div class="order__table-item"
+                 v-for="itemRow in 9"
+                 :key="itemRow">
+              <div class="order__table-row">
+                Ряд {{ itemRow }}
+              </div>
+              <div class="order__table-column"
+                   :class="{
+                    ordered: orderItems[itemRow][itemColumn],
+                    selected: selectItems[itemRow][itemColumn]
+                   }"
+                   v-for="itemColumn in 13"
+                   :key="itemColumn"
+                   @click="order(itemRow, itemColumn)">
+                {{ itemColumn }}
+              </div>
             </div>
           </div>
         </div>
@@ -32,13 +45,27 @@
 
 <script>
 import MyButton from "../../components/UI/MyButton";
-import {onValue, ref} from "firebase/database";
+import {onValue, ref, set} from "firebase/database";
 import db from "../../firebase/database";
 export default {
   name: "Order",
   components: {MyButton},
   props: {
     id: Number || String
+  },
+  created() {
+    for(let i = 1; i <= 9; i++) {
+      if(!this.orderItems[i]) {
+        this.orderItems[i] = {}
+        this.selectItems[i] = {}
+      }
+      for(let j = 1; j <= 13; j++) {
+        if(!this.orderItems[i][j]) {
+          this.orderItems[i][j] = false
+          this.selectItems[i][j] = false
+        }
+      }
+    }
   },
   mounted() {
     this.setupOrder()
@@ -55,7 +82,8 @@ export default {
       hallImg: '',
       tickets: 0,
       sum: 0,
-      orderItems: {}
+      orderItems: {},
+      selectItems: {}
     }
   },
   methods: {
@@ -85,15 +113,42 @@ export default {
           }
         })
       })
+      const ordersRef = ref(db, `orders/${this.id}/rows`)
+      onValue(ordersRef, (snapshot) => {
+        if(!snapshot.val()) {
+          return
+        }
+        const rows = snapshot.val()
+        for(let i = 1; i <= 9; i++) {
+          for(let j = 1; j <= 13; j++) {
+            if(rows[i][j]) {
+              if(this.orderItems[i][j]) {
+                this.orderItems[i][j] = false
+              }
+              this.orderItems[i][j] = true
+            }
+          }
+        }
+      })
     },
     order(row, column) {
       if(!this.orderItems[row]) {
-        this.orderItems[row] = []
+        this.orderItems[row] = {}
       }
-      if(this.orderItems[row].includes(column)) {
-        return alert('Вы уже выбрали это место!')
+      if(!this.selectItems[row]) {
+        this.selectItems[row] = {}
       }
-      this.orderItems[row].push(column)
+      if(this.selectItems[row][column]) {
+        this.tickets--
+        this.sum = this.tickets * this.scheduleItem.price
+        this.selectItems[row][column] = false
+        return this.orderItems[row][column] = false
+      }
+      if(this.orderItems[row][column]) {
+        return alert('Это место занято!')
+      }
+      this.orderItems[row][column] = true
+      this.selectItems[row][column] = true
       this.tickets++
       this.sum = this.tickets * this.scheduleItem.price
     },
@@ -103,6 +158,9 @@ export default {
       } else {
         alert('К оплате: ' + Number(this.sum + (this.tickets*3)) + ' грн. Выкупите билеты на кассе не раньше чем за полчаса до начала сеанса!')
       }
+      set(ref(db, `orders/${this.id}`), {
+        rows: this.orderItems
+      })
     },
     buy() {
       if(this.tickets === 0) {
@@ -110,6 +168,9 @@ export default {
       } else {
         alert('К оплате: ' + this.sum + ' грн.')
       }
+      set(ref(db, `orders/${this.id}`), {
+        rows: this.orderItems
+      })
     }
   },
 }
@@ -186,5 +247,11 @@ export default {
 .order__info-btn_green {
   background-color: #42b983;
   margin-left: 20px;
+}
+.ordered {
+  background-color: #cccccc;
+}
+.selected {
+  background-color: orange;
 }
 </style>
