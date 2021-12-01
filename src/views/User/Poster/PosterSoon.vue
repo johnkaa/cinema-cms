@@ -56,6 +56,14 @@ export default {
           this.filmsSoon[element] = this.filmsSoon[element].ua
         })
       }
+      if((dateObj.getMonth() + 1) === 12) {
+        this.date = dateObj.getDate() + ' ' +  this.months[11]
+        this.dateSoon = '1 ' + this.months[0]
+        if(this.$i18n.locale === 'ua') {
+          this.date = dateObj.getDate() + ' ' +  this.monthsUA[11]
+          this.dateSoon = '1 ' + this.monthsUA[0]
+        }
+      }
     }
   }
 }

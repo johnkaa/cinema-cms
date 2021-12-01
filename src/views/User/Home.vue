@@ -83,6 +83,14 @@ export default {
         this.date = dateObj.getDate() + ' ' +  this.monthsUA[(dateObj.getMonth())]
         this.dateSoon = '1 ' + this.monthsUA[(dateObj.getMonth() + 1)]
       }
+      if((dateObj.getMonth() + 1) === 12) {
+        this.date = dateObj.getDate() + ' ' +  this.months[11]
+        this.dateSoon = '1 ' + this.months[0]
+        if(this.$i18n.locale === 'ua') {
+          this.date = dateObj.getDate() + ' ' +  this.monthsUA[11]
+          this.dateSoon = '1 ' + this.monthsUA[0]
+        }
+      }
       const filmsNowRef = await ref(db, 'films/filmsNow')
       await onValue(filmsNowRef, (snapshot) => {
         this.filmsNow = snapshot.val()
